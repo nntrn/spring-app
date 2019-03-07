@@ -40,6 +40,8 @@ html, body {
 	
 }
 
+a:not([class]), #nav a{
+text-decoration:none;}
 
 .fullWidth {
 	width: 100%;

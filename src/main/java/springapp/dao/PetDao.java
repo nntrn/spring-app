@@ -29,6 +29,7 @@ public class PetDao {
 
 		@Override
 		public Pet mapRow(ResultSet rs, int rowNum) throws SQLException {
+			logger.info(this.getClass().toString());
 			String genderString = rs.getString("gender");
 			Gender gender = null;
 			if(genderString!= null) {

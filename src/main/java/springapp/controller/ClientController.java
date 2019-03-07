@@ -27,7 +27,7 @@ import springapp.service.ClientService;
 @RequestMapping("/clients") //notice that this path is set at the class level.
 public class ClientController {
 
-    private Logger logger = LoggerFactory.getLogger(ClientController.class);
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // Inject in a ClientService claass
 	@Autowired
@@ -43,6 +43,8 @@ public class ClientController {
 	 @PreAuthorize("hasAuthority('LIST_CLIENTS')")
 	 @GetMapping
 	 public String listClients(Model model) {
+		 logger.info("ANCHOR");
+		 logger.info("listClients");
         List<Client> clients = clientService.getClients();
 		model.addAttribute("clients", clients);
         return "clients/listClients";
@@ -127,5 +129,18 @@ public class ClientController {
          // redirect to list clients path/page
          return "redirect:/clients";
     }
+     
+	 //@PreAuthorize("hasAuthority('LIST_CLIENTS')")
+	 @GetMapping("/profile")
+	 public String clientProfile(Model model) {
+		 logger.info("ANCHOR");
+		 logger.info("clientProfile");
+        clientService.getClients();
+		//model.addAttribute("clients", clients);
+        //return "redirect:/clients";
+       return "clients/infoClients";
+    }
+
+
 
 }
