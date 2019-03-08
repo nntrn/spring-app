@@ -6,9 +6,9 @@
 	<div id="container" class="content pure-g" >
 		<header th:replace="fragments/header.html :: header" >
 		</header>
-		<div id="mainBody" class="pure-u column">
+		<div id="mainBody" class="row">
 			<div id="loginBox" >
-				<div class="bordered pure-u column">
+				<div class="">
 					
 					<div data-th-if="${param.error}" class="message-box-error">
 				        Invalid username and password
@@ -18,12 +18,12 @@
 				    </div>
 					<form data-th-action="@{/login}" method="post" class="pure-form pure-form-aligned">
 					    
-				       <div class="pure-control-group">
+				       <div class="form-group col-md-4">
 				            <label for="username">Username</label>
 				            <input id="username" name="username" type="text" placeholder="Username">
 				        </div>
 		
-				        <div class="pure-control-group">
+				        <div class="form-group col-md-4">
 				            <label for="password">Password</label>
 				            <input id="password" name="password" type="password" placeholder="Password">
 				        </div>
@@ -35,6 +35,7 @@
 		        </div>
 	        </div>
         </div>
-    </div>
+    <footer th:replace="fragments/footer.html :: footer">
+    </footer>
 </body>
 </html>

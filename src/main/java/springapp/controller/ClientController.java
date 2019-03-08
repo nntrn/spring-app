@@ -140,6 +140,8 @@ public class ClientController {
         //return "redirect:/clients";
        return "clients/infoClients";
     }
+	 
+	 
 
 
 

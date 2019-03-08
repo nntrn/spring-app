@@ -1,0 +1,108 @@
+    <!-- Sidebar -->
+    <ul data-th-fragment="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" data-th-href="@{'/clients/new'}">
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fa fa-paw"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Pet App</div>
+        </a>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+  
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-th-href="@{'/'}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Home</span></a>
+        </li>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+  
+        <!-- Heading -->
+        <!-- <div class="sidebar-heading"> Heading name </div> -->
+  
+        <!-- Nav Item - Profile -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-th-href="@{'/clients/profile'}">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span></a>
+        </li>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+  
+        <!-- Nav Item - Clients -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-th-href="@{'/clients'}" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Clients</span>
+          </a>
+          <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">More</h6>
+              <a class="collapse-item" href="#" data-th-href="@{'/clients/new'}">Add</a>
+              <a class="collapse-item" href="#" data-th-href="@{'/clients/new'}">Edit</a>
+            </div>
+          </div>
+        </li>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+  
+        <!-- Nav Item - Pets -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-th-href="@{'/pets'}">
+            <i class="fas fa-fw fa-paw"></i>
+            <span>Pets</span></a>
+        </li>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+  
+        <!-- Nav Item - Add -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-th-href="@{'/clients'}" data-toggle="collapse" data-target="#collapseAddItems" aria-expanded="true" aria-controls="collapseAddItems">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>Add</span>
+          </a>
+          <div id="collapseAddItems" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Add</h6>
+              <a class="collapse-item" href="#" data-th-href="@{'/clients/new'}">Client</a>
+              <a class="collapse-item" href="#" data-th-href="@{'/pets}">Pet</a>
+            </div>
+          </div>
+        </li>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+  
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-th-href="@{'/clients'}" data-toggle="collapse" data-target="#collapseTables" aria-expanded="true" aria-controls="collapseTables">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Tables</span>
+          </a>
+          <div id="collapseTables" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">View</h6>
+              <a class="collapse-item" href="#" data-th-href="@{'/clients'}">Clients</a>
+              <a class="collapse-item" href="#" data-th-href="@{'/pets'}">Pets</a>
+            </div>
+          </div>
+        </li>
+  
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+  
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+  
+      </ul>
+      <!-- End of Sidebar -->

@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html>
-<header th:replace="fragments/head.html :: head" >
+<header th:replace="fragments/head.html :: head">
 </header>
+
 <body>
-	<div id="container" class="content pure-g" >
-		<header th:replace="fragments/header.html :: header" >
-		</header>
+  <div id="container" class="content ">
+    <header th:replace="fragments/header.html :: header">
+    </header>
 		<div id="mainBody" class="pure-u pure-g column">
 			<div id="content" class="pure-u-1">
 				<div class="pad right">
@@ -33,6 +34,8 @@
 			</div>
 		</div>
     </div>
+    <footer th:replace="fragments/footer.html :: footer">
+    </footer>
 </body>
 </html>
 
