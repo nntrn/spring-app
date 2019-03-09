@@ -6,15 +6,25 @@ create table clients (
 );
 
 create table pets (
-	id integer PRIMARY KEY AUTOINCREMENT,
+	id integer AUTOINCREMENT,
 	name varchar(255),
 	gender varchar(255),
 	altered boolean,
 	client_id integer,
-	FOREIGN KEY (client_id) REFERENCES clients(id)
-
+	PRIMARY KEY (client_id, id),
+	FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
+CREATE TABLE appointment(
+	id integer PRIMARY KEY AUTOINCREMENT,
+	client_id integer,
+	pet_id integer, 
+	appt_type varchar(25),
+	appt_date varchar(25),
+	appt_time varchar(25),
+	FOREIGN KEY (client_id) REFERENCES clients(id)
+	FOREIGN KEY (pet_id) REFERENCES pet(id)
+);
 
 create table users (
 	id integer PRIMARY KEY AUTOINCREMENT,
@@ -24,3 +34,8 @@ create table users (
 );
 
 insert into users values (null, 'admin', 'password', 'SUPER_ADMIN');
+
+INSERT INTO clients values(NULL, 'michael', '512-333-4444','austin,tx');
+INSERT INTO clients values(NULL, 'annie', '832-333-4444','austin,tx');
+
+
