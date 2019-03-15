@@ -42,13 +42,13 @@
                                     data-th-field="*{phoneNumber}" required>
                             </div>
                         </div>
-                         <div class="form-row ml-1">
-                             <label class="small mb-0">Address</label>
-                         </div>
+                        <div class="form-row ml-1">
+                            <label class="small mb-0">Address</label>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-5">
                                 <label class="sr-only" for="inputAddress">Address</label>
-                                <input id="address" name="address" placeholder="Street" type="text" class="form-control text-capitalize" 
+                                <input id="address" name="address" placeholder="Street" type="text" class="form-control text-capitalize"
                                     data-th-field="*{address}">
                             </div>
 
@@ -76,43 +76,41 @@
                         </a>
                     </p>
 
-                    <!-- // TODO: pet form on client page -->
 
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body mb-2 col-md-10 border-1">
-                          <h4 class="text-muted font-weight-light">new pet</h4>
-                          <span > client </span>
-        
-                            <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}"
-                                method="post">
-                                <!-- <input name="id" type="hidden"> -->
-                                 <input name="clientId" type="hidden" data-th-value="${command.id}">
-                                         
-                                <div class="form-row">
-                                    <div class="form-group col-auto was-validated">
+                            <h4 class="text-muted font-weight-light">new pet</h4>
+
+                            <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}" method="post">
+
+                                <input name="clientId" type="hidden" data-th-value="${command.id}">
+
+                                <div class="form-row was-validated">
+                                    <div class="form-group col-auto">
                                         <label class="sr-only" for="name">Name</label>
-                                        <input id="name" name="name" type="text" class="form-control form-control-sm text-capitalize" required>
+                                        <input id="name" name="name" placeholder="pet name" type="text" class="form-control form-control-sm text-capitalize"
+                                            required>
                                         <div class="form-group mt-2 mb-0">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="altered" name="altered">
-                                                <label class="form-check-label" for="altered" id="altered" name="altered" type="checkbox">
+                                                <label class="form-check-label" for="altered" id="altered" name="altered"
+                                                    type="checkbox">
                                                     Altered
                                                 </label>
-                                               
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-auto">
+                                        <label for="gender" class="sr-only">Gender</label>
                                         <select id="gender" name="gender" class="form-control form-control-sm">
+
                                             <option value="Male" selected="selected">M</option>
                                             <option value="Female">F</option>
                                         </select>
-
                                     </div>
                                     <div class="form-group col-auto">
-                                      
-                                         <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0" value="add">Add</button>
-                                      
+                                        <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0"
+                                            value="add">Add</button>
                                     </div>
                                 </div>
 
@@ -153,13 +151,13 @@
 
                 </div>
             </div>
-             <footer th:replace="fragments/footer.html :: footer"></footer>
+            <footer th:replace="fragments/footer.html :: footer"></footer>
         </div>
     </div>
     <header th:replace="fragments/includes/plugins.html :: script"></header>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#phone').mask('(000)-000-0000')
         });
     </script>
