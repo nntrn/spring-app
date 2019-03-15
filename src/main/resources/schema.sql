@@ -1,3 +1,8 @@
+--drop table clients;
+drop table pets;
+drop table appointment;
+
+drop table clients;
 create table clients (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(255),
@@ -6,16 +11,15 @@ create table clients (
 );
 
 create table pets (
-	id integer AUTOINCREMENT,
+	id integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(255),
 	gender varchar(255),
 	altered boolean,
 	client_id integer,
-	PRIMARY KEY (client_id, id),
 	FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
-CREATE TABLE appointment(
+CREATE TABLE appointments(
 	id integer PRIMARY KEY AUTOINCREMENT,
 	client_id integer,
 	pet_id integer, 
@@ -34,8 +38,3 @@ create table users (
 );
 
 insert into users values (null, 'admin', 'password', 'SUPER_ADMIN');
-
-INSERT INTO clients values(NULL, 'michael', '512-333-4444','austin,tx');
-INSERT INTO clients values(NULL, 'annie', '832-333-4444','austin,tx');
-
-
