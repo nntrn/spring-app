@@ -81,29 +81,47 @@
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body mb-2 col-md-10 border-1">
                           <h4 class="text-muted font-weight-light">new pet</h4>
-                            <form class="needs-validation" id="theForm" action="#" data-th-action="@{/pets}"
+                          <span > client </span>
+                          <span data-th-text="${command.id}"> client </span>
+                            <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}"
                                 data-th-object="${command}" method="post">
+                                <input type="hidden" data-th-field="*{id}">
+                                <!-- <input type="hidden" data-th-field="*{clientId}"  data-th-text="${command.id}"> -->
+                                 <label>Id</label>
+				            <span data-th-if="${command.id == null}"> New </span>
+                              <span data-th-if="${command.id != null}" data-th-text="*{id}"> New </span>		
+                              
+                            <div data-th-if="${saved}" class="message-box-info">
+                            Saved
+                         </div>
+                                
+                                
                                 <div class="form-row">
                                     <div class="form-group col-auto">
-                                        <label class="sr-only" for="name">Name</label>
-                                        <input id="name" name="name" placeholder="Name" type="text" class="form-control form-control-sm" validate>
+                                        <label class="sr-only" for="petName">Name</label>
+                                        <input id="petName" data-th-field="*{name}" name="petName" type="text" class="form-control form-control-sm" validate>
                                         <div class="form-group mt-2 mb-0">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="defaultCheck1">
-                                                <label class="form-check-label" for="defaultCheck1">
+                                                <label class="form-check-label" for="defaultCheck1" name="altered" type="checkbox">
                                                     Altered
                                                 </label>
+                                               
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-auto">
+                                         
                                         <label class="sr-only" for="gender">Gender</label>
                                         <select id="gender" class="form-control form-control-sm">
                                             <option value="male" selected>M</option>
                                             <option value="female">F</option>
                                         </select>
+                                         <!-- <input type="hidden" data-th-field="*{altered}"/> -->
                                     </div>
                                     <div class="form-group col-auto">
+                                        <!-- FIXME: save is actually updating and not saving -->
+                                         <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0" value="Save">Save</button>
                                         <a class="btn btn-primary btn-sm" data-th-href="@{/pets/new?clientId={c}(c=${command?.id})}">add</a>
                                     </div>
                                 </div>
