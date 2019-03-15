@@ -1,8 +1,8 @@
 --drop table clients;
-drop table pets;
-drop table appointment;
+--drop table pets;
+--drop table appointment;
 
-drop table clients;
+--drop table clients;
 create table clients (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(255),

@@ -144,6 +144,22 @@ public class PetController {
         return "redirect:/pets/"+pet.getId();
 
     }
+//	
+//	@PreAuthorize("hasAuthority('SAVE_PET')")
+//	@PostMapping
+//	 public String savePet2(PetCommand command, RedirectAttributes redirectAttributes, boolean fromClientPage) {
+//
+//	        // we pass in the pet command to the service to update or create a new pet
+//	        Pet pet = petService.savePet(command);
+//
+//
+//	        redirectAttributes.addAttribute("saved2", true);
+//	        if(fromClientPage) {
+//	            redirectAttributes.addAttribute("clientId", pet.getClientId());
+//	        }
+//	        return "redirect:/clients/";
+//
+//	    }
 
     /**
      * Delete a pet and redirect to either the pet listing page, or the client edit page
