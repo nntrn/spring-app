@@ -82,28 +82,20 @@
                         <div class="card card-body mb-2 col-md-10 border-1">
                           <h4 class="text-muted font-weight-light">new pet</h4>
                           <span > client </span>
-                          <span data-th-text="${command.id}"> client </span>
+        
                             <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}"
-                                data-th-object="${command}" method="post">
-                                <input type="hidden" data-th-field="*{id}">
-                                <!-- <input type="hidden" data-th-field="*{clientId}"  data-th-text="${command.id}"> -->
-                                 <label>Id</label>
-				            <span data-th-if="${command.id == null}"> New </span>
-                              <span data-th-if="${command.id != null}" data-th-text="*{id}"> New </span>		
-                              
-                            <div data-th-if="${saved}" class="message-box-info">
-                            Saved
-                         </div>
-                                
-                                
+                                method="post">
+                                <!-- <input name="id" type="hidden"> -->
+                                 <input name="clientId" type="hidden" data-th-value="${command.id}">
+                                         
                                 <div class="form-row">
-                                    <div class="form-group col-auto">
-                                        <label class="sr-only" for="petName">Name</label>
-                                        <input id="petName" data-th-field="*{name}" name="petName" type="text" class="form-control form-control-sm" validate>
+                                    <div class="form-group col-auto was-validated">
+                                        <label class="sr-only" for="name">Name</label>
+                                        <input id="name" name="name" type="text" class="form-control form-control-sm text-capitalize" required>
                                         <div class="form-group mt-2 mb-0">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="defaultCheck1">
-                                                <label class="form-check-label" for="defaultCheck1" name="altered" type="checkbox">
+                                                <input class="form-check-input" type="checkbox" id="altered" name="altered">
+                                                <label class="form-check-label" for="altered" id="altered" name="altered" type="checkbox">
                                                     Altered
                                                 </label>
                                                
@@ -111,18 +103,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-auto">
-                                         
-                                        <label class="sr-only" for="gender">Gender</label>
-                                        <select id="gender" class="form-control form-control-sm">
-                                            <option value="male" selected>M</option>
-                                            <option value="female">F</option>
+                                        <select id="gender" name="gender" class="form-control form-control-sm">
+                                            <option value="Male" selected="selected">M</option>
+                                            <option value="Female">F</option>
                                         </select>
-                                         <!-- <input type="hidden" data-th-field="*{altered}"/> -->
+
                                     </div>
                                     <div class="form-group col-auto">
-                                        <!-- FIXME: save is actually updating and not saving -->
-                                         <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0" value="Save">Save</button>
-                                        <a class="btn btn-primary btn-sm" data-th-href="@{/pets/new?clientId={c}(c=${command?.id})}">add</a>
+                                      
+                                         <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0" value="add">Add</button>
+                                      
                                     </div>
                                 </div>
 
@@ -141,6 +131,7 @@
                                     <th scope="col">Pet Id</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Gender</th>
+                                    <th scope="col">Altered</th>
                                 </tr>
                             </thead>
                             <tbody data-th-if="${pets.size() > 0}">
@@ -149,6 +140,7 @@
                                             data-th-text="${pet.id}">...</a></td>
                                     <td data-th-text="${pet.name}">...</td>
                                     <td data-th-text="${pet.gender}">...</td>
+                                    <td data-th-text="${pet.altered}">...</td>
                                 </tr>
                             </tbody>
                             <tbody data-th-if="${pets.size() == 0}">
