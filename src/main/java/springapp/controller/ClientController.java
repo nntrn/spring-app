@@ -38,7 +38,8 @@ public class ClientController {
      *
      * Note that no addiontal path is specified, and that this method only handles a GET
      * @param model the model to populate for merging  with the view
-     * @return the client list page template
+
+    * @return the client list page template
      */
 	 @PreAuthorize("hasAuthority('LIST_CLIENTS')")
 	 @GetMapping

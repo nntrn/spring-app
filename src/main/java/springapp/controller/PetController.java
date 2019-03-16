@@ -103,6 +103,10 @@ public class PetController {
             Pet pet = petService.getPet(id);
             // and we generate our command from the pet instance the service returns
 			petCommand = new PetCommand(pet);
+			petCommand.setName(petCommand.getName());
+			petCommand.setGender(petCommand.getGender());
+			petCommand.setAltered(petCommand.isAltered());
+			 model.addAttribute("saved2", saved);
 		}
 
 		// the pet command should always have the clientid (unless the Pet instance from the service is missing an id)
@@ -114,8 +118,9 @@ public class PetController {
 		// we set the client instance in the pet command,
         // when we got the command earlier, we only had the clientid, but now we should have the full client object.
         // we do this because we want to display the client info (name) not just the id.
-		petCommand.setClient(client);			
-
+		petCommand.setClient(client);	
+	
+		
 		// we add the command pet command instance to the mode (which has the client instance as well as the pet info)
 		model.addAttribute("command", petCommand);
 		return "pets/editPet";
@@ -154,7 +159,7 @@ public class PetController {
 	        
 	        String pid = pet.getClientId().toString();
 
-	        redirectAttributes.addAttribute("saved2", true);
+	        redirectAttributes.addAttribute("saved", true);
 	        if(fromClientPage) {
 	            redirectAttributes.addAttribute("clientId", pet.getClientId());
 	        }
@@ -174,7 +179,12 @@ public class PetController {
 	public String deletePet(@PathVariable("id") String id,
 							@RequestParam(name="clientId", required=false) Integer clientId,
 							RedirectAttributes redirectAttributes) {
-
+		
+		logger.info("ANCHOR");
+		logger.info(this.getClass().toString());
+		logger.info(redirectAttributes.toString());
+		
+		int cid = petService.getPet(id).getClientId();
 	    // we pass the pet id to the service so it can delete the pet
 		petService.deletePet(id);
 
@@ -185,9 +195,9 @@ public class PetController {
             // if a client id was passed in, then we redirect to the client edit page
 			return "redirect:/clients/"+clientId;
 		}
-
+		
 		// otherwise we redirect to the petslisting page
-		return "redirect:/pets";
+		return "redirect:/clients/"+cid;
 
 	}
 }
