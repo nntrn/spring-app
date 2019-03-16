@@ -47,10 +47,6 @@
               <a class="nav-link dropdown-toggle" href="#"  id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span data-th-href="@{/clients}"  class="mr-2 d-none d-lg-inline text-gray-600 small">username TODO</span>
                  <!-- <span data-th-text="${command.client.name}"> client </span> -->
-                 	<ul data-th-each="client : ${clients}">
-					    <li> <a data-th-href="@{/clients/{id}(id=${client.id})}" data-th-text="${client.id}">id</a>
-								<span data-th-text="${client.name}">name</span></li>
-							</ul>
                 
                 <i class="fas fa-user-circle fa-2x"></i>
               </a>
