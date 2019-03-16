@@ -21,3 +21,13 @@
     content: "*";
     color: red;
 }
+  .list-group-horizontal-sm .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: .35rem;
+    border-bottom-right-radius: .35rem;
+    border-bottom-left-radius: .35rem;
+  }
+.pet-save{
+    border:unset;
+    padding:unset;
+  }
