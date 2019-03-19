@@ -1,35 +1,44 @@
 <!DOCTYPE HTML>
 <html>
 <header th:replace="fragments/head.html :: head"></header>
+
 <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <div th:replace="fragments/includes/sidebar.html :: sidebar"></div>
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="fragments/includes/sidebar.html :: sidebar"></div>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
 
 
-            <!-- Main Content --------------------------------------->
-            <div id="content">
-                <div th:replace="fragments/includes/topbar.html :: topbar"></div>
-                <div class="container-fluid">
-                    Welcome to the spring app tutorial.
-                    <br>
-                    From this app, you should be able to:
-                    <ul>
-                        <li> Add client and edit their info </li>
-                        <li> Add pets for a client </li>
-                        <li> Update a client's or a pet's info</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- end ------------------------------------------------->
-            
+      <div id="content">
+        <div th:replace="fragments/includes/topbar.html :: topbar"></div>
+        <div class="container-fluid">
+         
+        <!-- Main Content --------------------------------------->
 
-            <footer th:replace="fragments/footer.html :: footer"></footer>
+          Welcome to the spring app tutorial.
+          <br>
+          From this app, you should be able to:
+          <ul>
+            <li> Add client and edit their info </li>
+            <li> Add pets for a client </li>
+            <li> Update a client's or a pet's info</li>
+          </ul>
+
+        <!-- end ------------------------------------------------->
+        
         </div>
+      </div>
+
+
+      <footer th:replace="fragments/footer.html :: footer"></footer>
     </div>
-    <header th:replace="fragments/includes/plugins.html :: script"></header>
+  </div>
+  <header th:replace="fragments/includes/plugins.html :: script"></header>
+  
+  <!-- add additional scripts here  -->
+
 </body>
+
 </html>
