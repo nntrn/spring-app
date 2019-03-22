@@ -37,12 +37,14 @@ public class PetDao {
 			String genderString = rs.getString("gender");
 			Gender gender = null;
 			
-			if(genderString!= null) {
+			if(genderString!= null) 
 				gender = Gender.valueOf(genderString);
-			}
+
+			// create new client object using client_id
 			Client client = clientDao.get(rs.getInt("client_id"));
 			
 			Pet newPet = new Pet(rs.getInt("id"), rs.getString("name"), gender, rs.getBoolean("altered"), rs.getInt("client_id"));
+			// set client after initializing new pet
 			newPet.setClient(client);
 			
 			return newPet;
@@ -52,8 +54,8 @@ public class PetDao {
 	
     @Autowired
     JdbcTemplate jdbcTemplate;
-    	
 	public List<Pet> list2(){
+		// TODO: edit this SQL statement
 		List<Pet> queryResult = jdbcTemplate.query(
 				"SELECT * FROM clients, pets where clients.id = pets.client_id",
 				simplePetMapper);
@@ -75,7 +77,6 @@ public class PetDao {
 				new Object[] {clientId},
 				simplePetMapper);
 		
-		
 		return queryResult;
 	}
 	
@@ -85,12 +86,10 @@ public class PetDao {
 				new Object[] {id},
 				simplePetMapper);
 		
-		if(queryResult.isEmpty()) {
+		if(queryResult.isEmpty())
 			return null;
-		}
 		
 		return queryResult.get(0);
-		
 	}
 	
 	public Pet save(Pet pet) {
@@ -109,7 +108,6 @@ public class PetDao {
 					statement.setBoolean(3, pet.isAltered());
 					statement.setInt(4, pet.getClientId());
 					return statement;
-
 				}
 			}, holder);
 			
