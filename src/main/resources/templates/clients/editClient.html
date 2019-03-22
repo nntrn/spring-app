@@ -4,177 +4,196 @@
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <div th:replace="fragments/includes/sidebar.html :: sidebar">
-    </div>
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
-
-      <!-- Main Content -->
-      <div id="content">
-
-        <div th:replace="fragments/includes/topbar.html :: topbar"></div>
-
-        <div class="container-fluid">
-          <form class="needs-validation" id="theForm" action="#" data-th-action="@{/clients}" data-th-object="${command}" method="post">
-            <input type="hidden" data-th-field="*{id}" />
-            <div data-th-if="${saved}" class="message-box-info">
-              Saved
-            </div>
-
-            <input type="hidden" data-th-field="*{id}" />
-            <div class="form-row">
-
-              <div class="form-group col was-validated">
-                <label class="small mb-0" for="name">Name</label>
-                <input id="name" name="name" placeholder="name" type="text" class="form-control text-capitalize" data-th-field="*{name}" required>
-              </div>
-
-              <div class="form-group col">
-                <label class="small mb-0" for="phone">Phone</label>
-                <input id="phone" name="phone" placeholder="phone" type="text" class="form-control" data-th-field="*{phoneNumber}" required>
-              </div>
-            </div>
-            <div class="form-row ml-1 col">
-              <label class="small mb-0">Address</label>
-            </div>
-            <div class="form-row">
-              <div class="form-group col">
-                <label class="sr-only" for="address">Address</label>
-                <input id="address" name="address" placeholder="Street" type="text" class="form-control text-capitalize" data-th-field="*{address}">
-              </div>
-
-              <div class="form-group col">
-                <label class="sr-only" for="inputCity">City</label>
-                <input type="text" name="city" placeholder="City" class="form-control" id="inputCity text-capitalize">
-              </div>
-
-              <div class="form-group col">
-                <label class="sr-only" for="inputZip">Zip</label>
-                <input type="text" name="zip" placeholder="Zip" class="form-control" id="inputZip">
-              </div>
-            </div>
-          </form>
-          <p>
-            <button type="submit" form="theForm" class="btn btn-primary btn-sm border-0" value="Save">Save</button>
-            <a class="btn btn-primary btn-sm border-0" data-th-href="@{/clients}">Cancel</a>
-            <a class="btn btn-primary btn-sm border-0" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
-            <a class="btn btn-outline-secondary btn-sm" data-th-if="${command.id != null}" data-toggle="collapse" href="#collapseAddNewPet" role="button" aria-expanded="false" aria-controls="collapseAddNewPet">
-              add pet
-            </a>
-          </p>
-          <hr>
-          
-          <!-- ADD NEW PET ------------------------------------------------------>
-          <div class="collapse" id="collapseAddNewPet">
-            <div class="card card-body mb-2 col border-1 bg-transparent">
-              <h4 class="text-muted font-weight-light">new pet</h4>
-
-              <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}" method="post">
-                <input name="clientId" type="hidden" data-th-value="${command.id}">
-                <div class="form-row was-validated">
-                  <div class="form-group col-auto">
-                    <label class="sr-only" for="name">Name</label>
-                    <input id="name" name="name" placeholder="pet name" type="text" class="form-control form-control-sm text-capitalize" required>
-                    <div class="form-group mt-2 mb-0">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="altered" name="altered">
-                        <label class="form-check-label" for="altered" id="altered" name="altered" type="checkbox">
-                          Altered
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group col-auto">
-                    <label for="gender" class="sr-only">Gender</label>
-                    <select id="gender" name="gender" class="form-control form-control-sm">
-                      <option value="Male" selected="selected">M</option>
-                      <option value="Female">F</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-auto">
-                    <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0" value="add">Add</button>
-                  </div>
-                </div>
-              </form>
-
-            </div>
-          </div>
-
-          <div class="mt-4" data-th-if="${command.id != null}">
-            <div data-th-if="${deleted}" class="message-box-info">
-              Deleted successfully
-            </div>
-
-            <!-- UPDATE PET INFO ------------------------------------------------------>
-            <div class="row">
-              <div class="col" data-th-if="${pets.size() > 0}">
-                <ul class="list-group list-group-horizontal-sm" data-th-each="pet, rowStat : ${pets}">
-                  <li class="list-group-item mb-2">
-
-                    <form data-th-action="@{/pets}" data-th-id="'updateForm-'+${pet.id}" data-th-object="${command}" method="post">
-                      <fieldset data-th-id="'pet-'+${pet.id}" disabled>
-                        <input name="id" type="hidden" data-th-value="${pet.id}">
-                        <input name="clientId" type="hidden" data-th-value="${command.id}">
-
-                        <div class="form-row p-0 was-validated">
-                          <div class="col-5">
-                            <label class="small mb-0">name</label>
-                            <input type="text" name="name" data-th-value="${pet.name}" class="form-control form-control-sm" required>
-                          </div>
-                          <div class="col-4">
-                            <label class="small mb-0">gender</label>
-                            <input type="text" name="gender" data-th-value="${pet.gender}" class="form-control form-control-sm">
-                          </div>
-                          <div class="col-3">
-                            <label class="small mb-0">altered</label>
-                            <input type="text" name="altered" data-th-value="${pet.altered}" class="form-control form-control-sm">
-                          </div>
-                        </div>
-                        <small class="text-muted">
-                          <span>#</span><a data-th-href="@{/pets/{pid}?clientId={cid}(pid=${pet.id}, cid=${command.id})}" data-th-text="${pet.id}" class="text-body">...</a>
-                          <a class="" data-th-href="@{'/pets/'+${pet.id}+'/delete'}" data-th-value="${command.id}">Delete</a> |
-                          <a class="edit-pet-link" href="#" onclick="poppy(event);" data-th-value="${pet.id}">Edit Pet</a> |
-                          <button type="submit" data-th-form="'updateForm-'+${pet.id}" class="reset pet-save" value="Save">Save</button>
-                        </small>
-                      </fieldset>
-                    </form>
-
-                  </li>
-                </ul>
-
-              </div>
-            </div>
-          </div>
+        <!-- Sidebar -->
+        <div th:replace="fragments/includes/sidebar.html :: sidebar">
         </div>
-      </div>
-      <footer th:replace="fragments/footer.html :: footer"></footer>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <div th:replace="fragments/includes/topbar.html :: topbar"></div>
+                <div class="container-fluid">
+
+                    <!-- ADD/EDIT CLIENT ----------------------------------->
+                    <form class="needs-validation" id="theForm" action="#" data-th-action="@{/clients}" data-th-object="${command}"
+                        method="post">
+                        <input type="hidden" data-th-field="*{id}" />
+                        <div data-th-if="${saved}" class="message-box-info">
+                            Saved
+                        </div>
+
+                        <input type="hidden" data-th-field="*{id}" />
+                        <div class="form-row">
+
+                            <div class="form-group col was-validated">
+                                <label class="small mb-0" for="name">Name</label>
+                                <input id="name" name="name" placeholder="name" type="text" class="form-control text-capitalize"
+                                    data-th-field="*{name}" required>
+                            </div>
+
+                            <div class="form-group col">
+                                <label class="small mb-0" for="phone">Phone</label>
+                                <input id="phone" name="phone" placeholder="phone" type="text" class="form-control"
+                                    data-th-field="*{phoneNumber}" required>
+                            </div>
+                        </div>
+                        <div class="form-row ml-1">
+                            <label class="small mb-0">Address</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label class="sr-only" for="address">Address</label>
+                                <input id="address" name="address" placeholder="Street" type="text" class="form-control text-capitalize"
+                                    data-th-field="*{address}">
+                            </div>
+
+                            <div class="form-group col">
+                                <label class="sr-only" for="inputCity">City</label>
+                                <input type="text" name="city" placeholder="City" class="form-control" id="inputCity text-capitalize">
+                            </div>
+
+                            <div class="form-group col">
+                                <label class="sr-only" for="inputZip">Zip</label>
+                                <input type="text" name="zip" placeholder="Zip" class="form-control" id="inputZip">
+                            </div>
+                        </div>
+                    </form>
+                    <p>
+                        <button type="submit" form="theForm" class="btn btn-primary btn-sm border-0" value="Save">Save</button>
+                        <a class="btn btn-primary btn-sm border-0" data-th-href="@{/clients}">Cancel</a>
+                        <a class="btn btn-primary btn-sm border-0" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
+                        <a class="btn btn-outline-secondary btn-sm" data-th-if="${command.id != null}" data-toggle="collapse"
+                            href="#collapseAddNewPet" role="button" aria-expanded="false" aria-controls="collapseAddNewPet">
+                            add pet
+                        </a>
+                    </p>
+                    <hr>
+
+                    <!-- ADD NEW PET ------------------------------------------------------>
+                    <div class="collapse" id="collapseAddNewPet">
+                        <div class="card card-body mb-2 col border-1 bg-transparent">
+                            <h4 class="text-muted font-weight-light">new pet</h4>
+
+                            <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}" method="post">
+                                <input name="clientId" type="hidden" data-th-value="${command.id}">
+                                <div class="form-row was-validated">
+                                    <div class="form-group col-auto">
+                                        <label class="sr-only" for="name">Name</label>
+                                        <input id="name" name="name" placeholder="pet name" type="text" class="form-control form-control-sm text-capitalize"
+                                            required>
+                                        <div class="form-group mt-2 mb-0">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="altered" name="altered">
+                                                <label class="form-check-label" for="altered" id="altered" name="altered"
+                                                    type="checkbox">
+                                                    Altered
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-auto">
+                                        <label for="gender" class="sr-only">Gender</label>
+                                        <select id="gender" name="gender" class="form-control form-control-sm">
+                                            <option value="Male" selected="selected">M</option>
+                                            <option value="Female">F</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-auto">
+                                        <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0"
+                                            value="add">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="mt-4" data-th-if="${command.id != null}">
+                        <div data-th-if="${deleted}" class="message-box-info">
+                            Deleted successfully
+                        </div>
+
+                        <!-- UPDATE PET INFO ------------------------------------------------------>
+                        <div class="row" data-th-if="${pets.size() > 0}">
+                            <div class="col-sm-6" data-th-each="pet, rowStat : ${pets}">
+
+                                <div class="card mb-2">
+                                    <div class="card-body">
+
+                                        <form data-th-action="@{/pets}" data-th-id="'updateForm-'+${pet.id}"
+                                            data-th-object="${command}" method="post">
+                                            <fieldset data-th-id="'pet-'+${pet.id}" disabled>
+                                                <input name="id" type="hidden" data-th-value="${pet.id}">
+                                                <input name="clientId" type="hidden" data-th-value="${command.id}">
+
+                                                <div class="form-row p-0 was-validated">
+                                                    <div class="col">
+                                                        <label class="small mb-0">name</label>
+                                                        <input type="text" name="name" data-th-value="${pet.name}"
+                                                            class="form-control form-control-sm" required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label class="small mb-0">gender</label>
+                                                        <input type="text" name="gender" data-th-value="${pet.gender}"
+                                                            class="form-control form-control-sm">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label class="small mb-0">altered</label>
+                                                        <input type="text" name="altered" data-th-value="${pet.altered}"
+                                                            class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                                <small class="text-muted">
+                                                    <span>#</span><a data-th-href="@{/pets/{pid}?clientId={cid}(pid=${pet.id}, cid=${command.id})}"
+                                                        data-th-text="${pet.id}" class="text-body">...</a>
+                                                    <a class="" data-th-href="@{'/pets/'+${pet.id}+'/delete'}"
+                                                        data-th-value="${command.id}">Delete</a> |
+                                                    <a class="edit-pet-link" href="#" onclick="poppy(event);"
+                                                        data-th-value="${pet.id}">Edit Pet</a> |
+                                                    <button type="submit" data-th-form="'updateForm-'+${pet.id}" class="reset pet-save"
+                                                        value="Save">Save</button>
+                                                </small>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            <!-- END ------------------------------------------------------>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end container -->
+            </div>
+            <footer th:replace="fragments/footer.html :: footer"></footer>
+        </div>
     </div>
-  </div>
-  <header th:replace="fragments/includes/plugins.html :: script"></header>
+    <header th:replace="fragments/includes/plugins.html :: script"></header>
 
-  <script>
-    $(document).ready(function () {
-      $('#phone').mask('(000)-000-0000')
-    });
+    <script>
+        $(document).ready(function () {
+            $('#phone').mask('(000)-000-0000')
+        });
 
-    // scripts for undisabling pet edit links
-    function sesame(i) {
-      let x = "#updateForm-" + i + " fieldset";
-      $(x).prop('disabled', false);
-    }
+        // scripts for undisabling pet edit links
+        function sesame(i) {
+            let x = "#updateForm-" + i + " fieldset";
+            $(x).prop('disabled', false);
+        }
 
-    function poppy(event) {
-      event.preventDefault()
-      var element = event.target;
-      var id = element.getAttribute("value");
-      sesame(id);
-    }
-  </script>
+        function poppy(event) {
+            event.preventDefault()
+            var element = event.target;
+            var id = element.getAttribute("value");
+            sesame(id);
+        }
+    </script>
 
 </body>
 

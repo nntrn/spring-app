@@ -134,7 +134,8 @@ public class PetCommand {
 		this.client = client;
 	}
 	
-	
+	// TODO:
+	// i dont think this code is needed but keeping just incase things break
 	public String getClientName() {
 		return clientName;
 	}

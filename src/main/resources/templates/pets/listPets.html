@@ -31,7 +31,6 @@
                 <tbody>
                     <tr data-th-each="pet : ${pets}">
                         <td data-th-text="${pet.id}">...</td>
-
                         <td> 
                             <span data-th-text="${pet.name}" class="text-uppercase">...</span>
                             <a data-th-href="@{/pets/{id}(id=${pet.id})}" class="small text-primary">[edit]</a>
@@ -39,19 +38,17 @@
                         <td data-th-text="${pet.gender}" class="text-uppercase">...</td>
                         <td data-th-text="${pet.altered}" class="text-uppercase">...</td>
                         <td> 
-                            <span data-th-text="${pet.client.name}" class="text-uppercase">...</span>
+                            <span data-th-text="${pet.client.name}" class="text-capitalize">...</span>
                             <a data-th-href="@{/clients/{id}(id=${pet.clientId})}" class="small text-primary">[edit]</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-
         <!-- end ------------------------------------------------->
         
         </div>
       </div>
-
 
       <footer th:replace="fragments/footer.html :: footer"></footer>
     </div>
