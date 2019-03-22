@@ -15,7 +15,7 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
           <a class="nav-link" href="#" data-th-href="@{'/'}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+           <i class="fas fa-home"></i>
             <span>Home</span></a>
         </li>
         
@@ -24,11 +24,11 @@
         <!-- Heading -->
         <!-- <div class="sidebar-heading"> Heading name </div> -->
   
-        <!-- Nav Item - Profile -->
+        <!-- Nav Item - Appointments -->
         <li class="nav-item">
           <a class="nav-link" href="#">
-            <i class="fas fa-user-circle"></i>
-            <span>Profile</span></a>
+            <i class="fas fa-calendar-alt"></i>
+            <span>Appointments</span></a>
         </li>
 
          <hr class="sidebar-divider my-0">
@@ -36,13 +36,13 @@
         <!-- Nav Item - Clients -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-th-href="@{'/clients'}" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
-            <i class="fas fa-fw fa-user"></i>
+            <i class="fas fa-user-edit"></i>
             <span>Clients</span>
           </a>
           <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="#" data-th-href="@{'/clients/new'}">Add</a>
-              <a class="collapse-item" href="#" data-th-href="@{'/clients/new'}">Edit</a>
+              <a class="collapse-item" href="#" data-th-href="@{'/clients/'}">Edit</a>
             </div>
           </div>
         </li>
@@ -77,13 +77,14 @@
         <!-- Nav Item - Tables -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-th-href="@{'/clients'}" data-toggle="collapse" data-target="#collapseTables" aria-expanded="true" aria-controls="collapseTables">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-database"></i>
             <span>Tables</span>
           </a>
           <div id="collapseTables" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="#" data-th-href="@{'/clients'}">Clients</a>
               <a class="collapse-item" href="#" data-th-href="@{'../pets'}">Pets</a>
+              <a class="collapse-item" href="#" data-th-href="@{'../appts'}">Appointments</a>
             </div>
           </div>
         </li>
