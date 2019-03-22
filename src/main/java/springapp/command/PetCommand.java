@@ -15,6 +15,7 @@ public class PetCommand {
 	private Gender gender;
 	private Integer clientId;
 	private Client client;
+	private String clientName; //TODO: i know theres an easier way to get client name
 
 	/**
 	 * Initialise an empty pet command with the client id set
@@ -134,9 +135,13 @@ public class PetCommand {
 	}
 	
 	
+	public String getClientName() {
+		return clientName;
+	}
 	
-	
-	
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
 	
 
 }
