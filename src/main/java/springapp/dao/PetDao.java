@@ -52,21 +52,19 @@ public class PetDao {
 	
     @Autowired
     JdbcTemplate jdbcTemplate;
-//    	
-//	public List<Pet> list(){
-//		List<Pet> queryResult = jdbcTemplate.query(
-//				"SELECT * FROM pets INNER JOIN clients ON clients.id = pets.client_id",
-//				simplePetMapper);
-//		
-//		
-//		return queryResult;
-//	}
-//    
+    	
+	public List<Pet> list2(){
+		List<Pet> queryResult = jdbcTemplate.query(
+				"SELECT * FROM clients, pets where clients.id = pets.client_id",
+				simplePetMapper);
+		
+		return queryResult;
+	}
+    
 	public List<Pet> list(){
 		List<Pet> queryResult = jdbcTemplate.query(
 				"SELECT id, name, gender, altered, client_id FROM pets",
 				simplePetMapper);
-		
 		
 		return queryResult;
 	}
@@ -92,7 +90,6 @@ public class PetDao {
 		}
 		
 		return queryResult.get(0);
-		
 		
 	}
 	
