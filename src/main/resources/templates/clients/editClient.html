@@ -29,26 +29,26 @@
             <input type="hidden" data-th-field="*{id}" />
             <div class="form-row">
 
-              <div class="form-group col-6 was-validated">
+              <div class="form-group col was-validated">
                 <label class="small mb-0" for="name">Name</label>
                 <input id="name" name="name" placeholder="name" type="text" class="form-control text-capitalize" data-th-field="*{name}" required>
               </div>
 
-              <div class="form-group col-5">
+              <div class="form-group col">
                 <label class="small mb-0" for="phone">Phone</label>
                 <input id="phone" name="phone" placeholder="phone" type="text" class="form-control" data-th-field="*{phoneNumber}" required>
               </div>
             </div>
-            <div class="form-row ml-1">
+            <div class="form-row ml-1 col">
               <label class="small mb-0">Address</label>
             </div>
             <div class="form-row">
-              <div class="form-group col-5">
+              <div class="form-group col">
                 <label class="sr-only" for="address">Address</label>
                 <input id="address" name="address" placeholder="Street" type="text" class="form-control text-capitalize" data-th-field="*{address}">
               </div>
 
-              <div class="form-group col-4">
+              <div class="form-group col">
                 <label class="sr-only" for="inputCity">City</label>
                 <input type="text" name="city" placeholder="City" class="form-control" id="inputCity text-capitalize">
               </div>
@@ -71,7 +71,7 @@
           
           <!-- ADD NEW PET ------------------------------------------------------>
           <div class="collapse" id="collapseAddNewPet">
-            <div class="card card-body mb-2 col-md-8 border-1">
+            <div class="card card-body mb-2 col border-1 bg-transparent">
               <h4 class="text-muted font-weight-light">new pet</h4>
 
               <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}" method="post">
@@ -124,15 +124,15 @@
                         <div class="form-row p-0 was-validated">
                           <div class="col-5">
                             <label class="small mb-0">name</label>
-                            <input type="text" name="name" data-th-value="${pet.name}" class="form-control" required>
+                            <input type="text" name="name" data-th-value="${pet.name}" class="form-control form-control-sm" required>
                           </div>
                           <div class="col-4">
                             <label class="small mb-0">gender</label>
-                            <input type="text" name="gender" data-th-value="${pet.gender}" class="form-control">
+                            <input type="text" name="gender" data-th-value="${pet.gender}" class="form-control form-control-sm">
                           </div>
                           <div class="col-3">
                             <label class="small mb-0">altered</label>
-                            <input type="text" name="altered" data-th-value="${pet.altered}" class="form-control">
+                            <input type="text" name="altered" data-th-value="${pet.altered}" class="form-control form-control-sm">
                           </div>
                         </div>
                         <small class="text-muted">

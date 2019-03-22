@@ -134,22 +134,7 @@ public class PetController {
      * @param fromClientPage a flag so we know if this originated from the client page, or the pet list page
      * @return the view template to use once the save is successful
      */
-//	@PreAuthorize("hasAuthority('SAVE_PET')")
-//	@PostMapping
-//	 public String savePet(PetCommand command, RedirectAttributes redirectAttributes, boolean fromClientPage) {
-//
-//        // we pass in the pet command to the service to update or create a new pet
-//        Pet pet = petService.savePet(command);
-//
-//
-//        redirectAttributes.addAttribute("saved", true);
-//        if(fromClientPage) {
-//            redirectAttributes.addAttribute("clientId", pet.getClientId());
-//        }
-//        return "redirect:/pets/"+pet.getId();
-//
-//    }
-	
+
 	@PreAuthorize("hasAuthority('SAVE_PET')")
 	@PostMapping
 	 public String savePet(PetCommand command, RedirectAttributes redirectAttributes, boolean fromClientPage) {

@@ -1,21 +1,27 @@
-.centered {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-   
-}
-.bordered {
-	border: 1px solid #333333;
+#content {
+  width: 100%
 }
 
-.padded {
-	padding: 10px;
+.message-box-info {
+  color: green;
 }
 
-.error {
-	color: red;
+.was-validated .form-control:invalid, .was-validated .form-control:valid {
+  background-image: unset;
+  border-color: #d1d3e2;
 }
 
-.right {
-	justify-content: left;
+.was-validated .form-check-input:valid~.form-check-label {
+  color: unset;
+  border-color: unset;
+}
+
+.was-validated label[for="name"]:after {
+  display: inline;
+  content: "*";
+  color: red;
+}
+
+.list-group-item table {
+  margin: auto;
 }

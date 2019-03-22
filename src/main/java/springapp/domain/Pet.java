@@ -6,6 +6,7 @@ public class Pet {
 	private final Gender gender;
 	private final boolean altered;
 	private final Integer clientId;
+	private Client client;
 	
 	public Pet(Integer id, String name, Gender gender, boolean altered, Integer clientId ){
 		this.id = id;
@@ -35,8 +36,12 @@ public class Pet {
 		return clientId;
 	}
 	
-	
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
-	
 }
 
