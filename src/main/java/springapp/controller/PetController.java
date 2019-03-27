@@ -77,9 +77,8 @@ public class PetController {
 						 @RequestParam(name="clientId", required=false) Integer clientId,
 						 @RequestParam(name="saved", required = false) boolean saved) {
 
-
 	    // we used this as flag so we can tell on the view template how we got here?
-        // if a client id wass passed in, then we got to this page from the client edit page.
+        // if a client id was passed in, then we got to this page from the client edit page.
         // other wise we got here from the list pets page
         // this information can be used to figure out what page we should exit to
 		model.addAttribute("fromClientPage", clientId != null);
