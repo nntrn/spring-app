@@ -8,6 +8,9 @@ public class Appointment {
 	private final String appt_date;
 	private final String appt_type;
 	
+	private Client client;
+	private Pet pet;
+	
 	public Appointment(Integer id, Integer client_id, Integer pet_id, String appt_time, String appt_date, String appt_type) {
 		this.id = id;
 		this.client_id = client_id;
@@ -21,24 +24,38 @@ public class Appointment {
 		return id;
 	}
 
-	public Integer getClient_id() {
+	public Integer getClientId() {
 		return client_id;
 	}
 
-	public Integer getPet_id() {
+	public Integer getPetId() {
 		return pet_id;
 	}
 
-	public String getAppt_time() {
+	public String getApptTime() {
 		return appt_time;
 	}
 
-	public String getAppt_date() {
+	public String getApptDate() {
 		return appt_date;
 	}
 
-	public String getAppt_type() {
+	public String getApptType() {
 		return appt_type;
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
+	public Pet getPet() {
+		return pet;
+	}
+	public void setPet(Pet pet) {
+		this.pet = pet;
 	}
 	
 	

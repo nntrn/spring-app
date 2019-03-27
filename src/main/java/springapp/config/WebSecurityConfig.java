@@ -18,6 +18,7 @@ import springapp.service.SecurityService;
 /**
  * We use this class to configure our security settings
  */
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

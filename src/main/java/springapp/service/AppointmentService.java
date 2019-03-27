@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import springapp.command.PetCommand;
+import springapp.command.AppointmentCommand;
 import springapp.dao.AppointmentDao;
 import springapp.dao.ClientDao;
 import springapp.dao.PetDao;
@@ -30,9 +30,29 @@ public class AppointmentService {
 		return appointmentDao.list();
 	}
 	
-	public List<Client> getClients(int clientId) {
-		
-		return clientDao.list();
+	public void deleteAppointment(String id) {
+		appointmentDao.delete(Integer.parseInt(id));
+	}
+
+	public Appointment getAppointment(String id) {
+		return appointmentDao.get(Integer.parseInt(id));
+	}
+	
+	public Appointment getAppointment(Integer id) {
+		return appointmentDao.get(id);
+	}
+
+	
+	public Appointment saveAppointment(AppointmentCommand command) {
+		Appointment newAppt = new Appointment(
+				command.getId(), 
+				command.getClientId(), 
+				command.getPetId(), 
+				command.getApptTime(),
+				command.getApptDate(),
+				command.getApptType()
+				);
+		return appointmentDao.save(newAppt);
 	}
 
 }
