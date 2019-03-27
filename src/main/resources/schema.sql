@@ -1,16 +1,16 @@
---drop table clients;
---drop table pets;
---drop table appointment;
+DROP TABLE IF EXISTS clients;
+DROP TABLE IF EXISTS pets;
+DROP TABLE IF EXISTS appointments;
+DROP TABLE IF EXISTS users;
 
---drop table clients;
-create table clients (
+CREATE TABLE IF NOT EXISTS clients (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(255),
 	phone_number varchar(255),
 	address varchar(255)
 );
 
-create table pets (
+CREATE TABLE IF NOT EXISTS pets (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(255),
 	gender varchar(255),
@@ -19,22 +19,20 @@ create table pets (
 	FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
-CREATE TABLE appointments(
+CREATE TABLE IF NOT EXISTS appointments(
 	id integer PRIMARY KEY AUTOINCREMENT,
 	client_id integer,
 	pet_id integer, 
 	appt_type varchar(25),
 	appt_date varchar(25),
 	appt_time varchar(25),
-	FOREIGN KEY (client_id) REFERENCES clients(id)
-	FOREIGN KEY (pet_id) REFERENCES pet(id)
+	FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
+	FOREIGN KEY (pet_id) REFERENCES pet(id) ON DELETE CASCADE
 );
 
-create table users (
+CREATE TABLE IF NOT EXISTS users (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	username varchar(255),
 	encoded_password varchar(255),
 	role varchar(255)
 );
-
-insert into users values (null, 'admin', 'password', 'SUPER_ADMIN');
