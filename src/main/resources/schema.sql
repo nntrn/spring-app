@@ -26,8 +26,7 @@ CREATE TABLE IF NOT EXISTS appointments(
 	appt_type varchar(25),
 	appt_date varchar(25),
 	appt_time varchar(25),
-	FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
-	FOREIGN KEY (pet_id) REFERENCES pet(id) ON DELETE CASCADE
+	FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS users (
