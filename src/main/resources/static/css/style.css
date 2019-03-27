@@ -1,13 +1,15 @@
 #content {
-  width: 100%
+  width: 100%;
+  position:relative;
 }
 
 .message-box-info {
   color: green;
+  padding: 1rem 0;
+padding-top:0;
 }
 
-.was-validated .form-control:invalid,
-.was-validated .form-control:valid {
+.was-validated .form-control:invalid, .was-validated .form-control:valid {
   background-image: unset;
   border-color: #d1d3e2;
 }
@@ -23,8 +25,7 @@
   color: red;
 }
 
-.form-control.is-valid,
-.was-validated .form-control:valid {
+.form-control.is-valid, .was-validated .form-control:valid {
   padding-right: 0;
 }
 
@@ -41,8 +42,8 @@
 }
 
 body {
-  background: #dfe3e6;
-  color: #152935;
+  background: #79589f;
+  color: #3f3f44;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji
 
 }
@@ -56,25 +57,44 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #9e7cc1;
   text-transform: uppercase;
   font-weight: normal
 }
 
 .sidebar .sidebar-brand .sidebar-brand-text {
-  opacity: .4
+  opacity: .95
 }
 
 .sidebar .sidebar-heading {
   text-align: center;
   padding: 0 1rem;
   font-weight: 800;
-  font-size: .65rem
+  font-size: .65rem;
+
+}
+.sidebar .sidebar-brand .sidebar-brand-icon:hover{
+  transition:transform 1s;
+  transform:rotate(180deg)
 }
 
-.sidebar .sidebar-brand .sidebar-brand-icon {
-  color: rgba(255, 255, 255, .6);
-  font-size: 2.5em
+
+.sidebar .sidebar-brand .sidebar-brand-icon i {
+  color: #fff;
+  opacity:.6;
+  font-size: 2.5em;
+
+background-color:#9e7cc1;
+transition: box-shadow 500ms;
+  padding:10px;
+  box-shadow:0 0 .3rem 3px #e2e2e25c;
+}
+
+.sidebar .sidebar-brand .sidebar-brand-icon i:hover {
+  opacity:1;
+padding:20px;
+box-shadow:0 0 .3rem 0px #9e7cc15c;
+
 }
 
 .sidebar a {
@@ -82,7 +102,7 @@ body {
 }
 
 .shadow {
-  box-shadow: 0 .25rem 1rem rgba(0, 0, 0, .075) !important;
+  box-shadow: 0 .15rem .5rem rgba(0, 0, 0, .075) !important;
 }
 
 #wrapper #content-wrapper {
@@ -101,24 +121,24 @@ body {
 }
 
 .btn-primary.custom-buttons {
-  color: #294c86;
-  background: #5596e6;
-  border-color: #5596e6;
+  color: #fff;
+  background: #9e7cc1;
+  border-color: #9e7cc1;
 }
 
 .btn-outline-secondary.custom-buttons {
-  color: #5596e6;
-  border-color: #5596e6;
+  color: #9e7cc1;
+  border-color: #9e7cc1;
   background: white;
 }
 
 .btn-link {
-  color: #5596e6;
+  color: #9e7cc1;
 }
 
 .btn.custom-buttons:hover {
   opacity: 1;
-  box-shadow: inset 0 0 0 10rem #294c8696
+  box-shadow: inset 0 0 0 10rem #9e7cc196
 }
 
 .custom.card-body {
@@ -143,13 +163,17 @@ form label {
 }
 
 .bg-gradient-primary {
-  background-color: #5596e6;
+  background-color: #9e7cc1;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #5596e6;
-  border-color: #5596e6;
+  background-color: #9e7cc1;
+  border-color: #9e7cc1;
+}
+.form-control{
+color: #9e7cc1;
+padding:0 .5rem
 }
 
 .edit .edit-links {
@@ -186,4 +210,9 @@ form label {
   background-color: rgba(255, 255, 255, 1);
   position: relative;
   box-shadow: 0 0 0 2px #fff
+}
+
+.sidebar{
+    background: #f7f8fb;
+  border-right:1px solid #e7ebf3;
 }
