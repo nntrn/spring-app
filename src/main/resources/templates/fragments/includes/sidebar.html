@@ -26,7 +26,7 @@
   
         <!-- Nav Item - Appointments -->
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#" data-th-href="@{'/appointments/'}">
             <i class="fas fa-calendar-alt"></i>
             <span>Appointments</span></a>
         </li>
@@ -71,8 +71,8 @@
             </div>
           </div>
         </li>
-
-         <hr class="sidebar-divider my-0">
+        
+        <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
@@ -84,11 +84,10 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="#" data-th-href="@{'/clients'}">Clients</a>
               <a class="collapse-item" href="#" data-th-href="@{'../pets/'}">Pets</a>
-              <a class="collapse-item" href="#" data-th-href="@{'../appts'}">Appointments</a>
+              <a class="collapse-item" href="#" data-th-href="@{'../appointments'}">Appointments</a>
             </div>
           </div>
         </li>
-
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline mt-3">
