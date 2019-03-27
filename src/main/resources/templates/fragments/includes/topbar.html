@@ -57,11 +57,17 @@
                   Edit Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-th-href="@{'/login?logout/'}" data-toggle="modal" data-target="#logoutModal">
+         
+                <a class="dropdown-item" href="#" sec:authorize="isAuthenticated()" data-th-href="@{'/logout'}">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Sign out
                 </a>
-              </div>
+                <a class="dropdown-item" href="#" sec:authorize="isAnonymous()" data-th-href="@{'/login'}">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Sign in
+                </a>
+            </div>
+
             </li>
 
           </ul>

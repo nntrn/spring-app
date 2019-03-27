@@ -31,48 +31,40 @@
                         <input type="hidden" data-th-field="*{id}" />
                         <div class="form-row">
 
-                            <div class="form-group col was-validated">
+                            <div class="form-group col-md-6 was-validated">
                                 <label class="small mb-0" for="name">Name</label>
                                 <input id="name" name="name" placeholder="name" type="text" class="form-control text-capitalize"
                                     data-th-field="*{name}" required>
                             </div>
 
-                            <div class="form-group col">
+                            <div class="form-group col-md-6">
                                 <label class="small mb-0" for="phone">Phone</label>
                                 <input id="phone" name="phone" placeholder="phone" type="text" class="form-control"
                                     data-th-field="*{phoneNumber}" required>
                             </div>
                         </div>
-                        <div class="form-row ml-1">
-                            <label class="small mb-0">Address</label>
-                        </div>
                         <div class="form-row">
                             <div class="form-group col">
-                                <label class="sr-only" for="address">Address</label>
+                                <label class="small mb-0" for="address">Address</label>
                                 <input id="address" name="address" placeholder="Street" type="text" class="form-control text-capitalize"
                                     data-th-field="*{address}">
                             </div>
-
-                            <div class="form-group col">
-                                <label class="sr-only" for="inputCity">City</label>
-                                <input type="text" name="city" placeholder="City" class="form-control" id="inputCity text-capitalize">
-                            </div>
-
-                            <div class="form-group col">
-                                <label class="sr-only" for="inputZip">Zip</label>
-                                <input type="text" name="zip" placeholder="Zip" class="form-control" id="inputZip">
-                            </div>
                         </div>
                     </form>
-                    <p>
-                        <button type="submit" form="theForm" class="btn btn-primary btn-sm border-0" value="Save">Save</button>
-                        <a class="btn btn-primary btn-sm border-0" data-th-href="@{/clients}">Cancel</a>
-                        <a class="btn btn-primary btn-sm border-0" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
-                        <a class="btn btn-outline-secondary btn-sm" data-th-if="${command.id != null}" data-toggle="collapse"
-                            href="#collapseAddNewPet" role="button" aria-expanded="false" aria-controls="collapseAddNewPet">
-                            add pet
-                        </a>
-                    </p>
+        
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" form="theForm" class="btn btn-primary btn-sm custom-buttons" value="Save">Save</button>
+                                <a class="btn btn-primary btn-sm custom-buttons" data-th-href="@{/clients}">Cancel</a>
+                                <a class="btn btn-primary btn-sm custom-buttons" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
+                                <a class="btn btn-outline-secondary btn-sm custom-buttons" data-th-if="${command.id != null}" data-toggle="collapse"
+                                    href="#collapseAddNewPet" role="button" aria-expanded="false" aria-controls="collapseAddNewPet">
+                                    add pet
+                                </a>
+
+                            </div>
+                        </div>
+                
                     <hr>
 
                     <!-- ADD NEW PET ------------------------------------------------------>
@@ -121,10 +113,14 @@
 
                         <!-- UPDATE PET INFO ------------------------------------------------------>
                         <div class="row" data-th-if="${pets.size() > 0}">
+                             <div class="col-sm-12">
+                                  <h5><span data-th-text="${pets.size()}">...</span> pets:</h5>
+                             </div>
+                           
                             <div class="col-sm-6" data-th-each="pet, rowStat : ${pets}">
 
                                 <div class="card mb-2">
-                                    <div class="card-body">
+                                    <div class="custom card-body">
 
                                         <form data-th-action="@{/pets}" data-th-id="'updateForm-'+${pet.id}"
                                             data-th-object="${command}" method="post">
@@ -133,20 +129,20 @@
                                                 <input name="clientId" type="hidden" data-th-value="${command.id}">
 
                                                 <div class="form-row p-0 was-validated">
-                                                    <div class="col">
+                                                    <div class="col-7">
                                                         <label class="small mb-0">name</label>
                                                         <input type="text" name="name" data-th-value="${pet.name}"
                                                             class="form-control form-control-sm" required>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-2">
                                                         <label class="small mb-0">gender</label>
                                                         <input type="text" name="gender" data-th-value="${pet.gender}"
                                                             class="form-control form-control-sm">
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-3">
                                                         <label class="small mb-0">altered</label>
                                                         <input type="text" name="altered" data-th-value="${pet.altered}"
-                                                            class="form-control form-control-sm">
+                                                            class="form-control form-control-sm ">
                                                     </div>
                                                 </div>
                                                 <small class="text-muted">
