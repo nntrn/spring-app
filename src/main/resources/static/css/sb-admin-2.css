@@ -12,7 +12,7 @@ a:focus{outline: 0}
 .container,.container-fluid{padding-left: 1.5rem; padding-right: 1.5rem}
 .scroll-to-top{position: fixed; right: 1rem; bottom: 1rem; display: none; width: 2.75rem; height: 2.75rem; text-align: center; color: #fff; background: rgba(90,92,105,.5); line-height: 46px}
 .scroll-to-top:focus,.scroll-to-top:hover{color: #fff}
-.scroll-to-top:hover{background: #34495e}
+.scroll-to-top:hover{background: #815da7}
 .scroll-to-top i{font-weight: 800}
 @-webkit-keyframes growIn{0%{-webkit-transform: scale(.9); transform: scale(.9); opacity: 0 }
  100%{-webkit-transform: scale(1); transform: scale(1); opacity: 1 }
@@ -60,7 +60,7 @@ a:focus{outline: 0}
 .topbar .dropdown{position: static}
 .topbar .dropdown .dropdown-menu{width: calc(100% - 1.5rem); right: .75rem}
 .topbar .dropdown-list{padding: 0; border: none; overflow: hidden}
-.topbar .dropdown-list .dropdown-header{background-color: #34495e; border: 1px solid #34495e; padding-top: .75rem; padding-bottom: .75rem; color: #fff}
+.topbar .dropdown-list .dropdown-header{background-color: #815da7; border: 1px solid #815da7; padding-top: .75rem; padding-bottom: .75rem; color: #fff}
 .topbar .dropdown-list .dropdown-item{white-space: normal; padding-top: .5rem; padding-bottom: .5rem; border-left: 1px solid #dfe3e6; border-right: 1px solid #dfe3e6; border-bottom: 1px solid #dfe3e6; line-height: 1.3rem}
 .topbar .dropdown-list .dropdown-item .dropdown-list-image{position: relative; height: 2.5rem; width: 2.5rem}
 .topbar .dropdown-list .dropdown-item .dropdown-list-image img{height: 2.5rem; width: 2.5rem}
@@ -95,7 +95,7 @@ a:focus{outline: 0}
 .sidebar .nav-item .collapse .collapse-inner .collapse-item,.sidebar .nav-item .collapsing .collapse-inner .collapse-item{padding: .5rem 1rem; margin: 0 .5rem; display: block; color: #152935; text-decoration: none; border-radius: .35rem; white-space: nowrap}
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,.sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover{background-color: #f5f7fa}
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:active,.sidebar .nav-item .collapsing .collapse-inner .collapse-item:active{background-color: #dddfeb}
-.sidebar .nav-item .collapse .collapse-inner .collapse-item.active,.sidebar .nav-item .collapsing .collapse-inner .collapse-item.active{color: #34495e; font-weight: 400}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active,.sidebar .nav-item .collapsing .collapse-inner .collapse-item.active{color: #815da7; font-weight: 400}
 
 .sidebar #sidebarToggle{width: 2.5rem; height: 2.5rem; text-align: center; margin-bottom: 1rem; cursor: pointer}
 .sidebar #sidebarToggle::after{font-weight: 900; content: '\f104'; font-family: 'Font Awesome 5 Free'; margin-right: .1rem}
@@ -155,10 +155,10 @@ a:focus{outline: 0}
 -webkit-box-shadow: 0 0 0 .2rem rgba(78,115,223,.25); box-shadow: 0 0 0 .2rem rgba(78,115,223,.25)}
 .btn.disabled,.btn:disabled{opacity: .65}
 a.btn.disabled,fieldset:disabled a.btn{pointer-events: none}
-.btn-primary{color: #fff; background-color: #5596e6; border-color: #34495e}
-.btn-primary:hover{color: #fff; background-color: #34495e; border-color: #34495e}
+.btn-primary{color: #fff; background-color: #5596e6; border-color: #815da7}
+.btn-primary:hover{color: #fff; background-color: #815da7; border-color: #815da7}
 .btn-primary.focus,.btn-primary:focus{-webkit-box-shadow: 0 0 0 .2rem rgba(105,136,228,.5); box-shadow: 0 0 0 .2rem rgba(105,136,228,.5)}
-.btn-primary.disabled,.btn-primary:disabled{color: #fff; background-color: #34495e; border-color: #34495e}
+.btn-primary.disabled,.btn-primary:disabled{color: #fff; background-color: #815da7; border-color: #815da7}
 .btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle{color: #fff; background-color: #2653d4; border-color: #244ec9}
 .btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus{-webkit-box-shadow: 0 0 0 .2rem rgba(105,136,228,.5); box-shadow: 0 0 0 .2rem rgba(105,136,228,.5)}
 .btn-secondary{color: #fff; background-color: #858796; border-color: #858796}
