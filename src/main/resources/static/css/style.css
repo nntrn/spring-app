@@ -14,7 +14,11 @@
   background-image: unset;
   border-color: #d1d3e2;
 }
+.form-control.is-invalid,.was-validated .form-control:invalid {
 
+  padding-right: 0;
+  background-image: unset;
+}
 .was-validated .form-check-input:valid~.form-check-label {
   color: unset;
   border-color: unset;
@@ -141,27 +145,13 @@ body {
   padding: .7rem;
 }
 
-label+input:hover {
-  /*   font-size: .8em;
-  color: #8897a2;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: inset 0 .951rem 0 0 rgba(255, 255, 255, .3);
-  padding: 0;
-  margin-top: -.5rem;
-  z-index: 1;
-  display: block;
-  position: absolute; */
-
-  display: flex;
-}
-
-form label {
+form.custom-labels label {
   position: absolute;
   display: none;
   margin-top: -.5rem;
 }
 
-form:hover label {
+form.custom-labels:hover label {
   display: block;
 }
 
@@ -328,4 +318,15 @@ form:hover label {
 .topbar .dropdown .dropdown-menu {
   width: calc(30vw - 1.5rem);
   right: .75rem
+}
+
+.pet-menu {
+  line-height: 110%;
+  margin-top: .5rem;
+  padding: .25em 0;
+  border-top: 1px solid #eee;
+}
+
+.custom.card-body {
+  overflow: hidden
 }

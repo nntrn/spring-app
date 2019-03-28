@@ -5,3 +5,7 @@
    confirm("are you sure you want to delete?");
   })
 }(jQuery);
+
+$(document).ready(function () {
+    $('.format-phone').mask('(000)-000-0000')
+});
