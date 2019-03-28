@@ -117,7 +117,7 @@ public class AppointmentController {
 	@PreAuthorize("hasAuthority('DELETE_APPOINTMENT')")
 	@GetMapping("/{id}/delete")
 	public String deleteAppointment(@PathVariable("id") String id,
-							@RequestParam(name="clientId", required=false) Integer clientId,
+							@RequestParam(name="client_id", required=false) Integer client_id,
 							RedirectAttributes redirectAttributes) {
 
 		//int cid = petService.getPet(id).getClientId();

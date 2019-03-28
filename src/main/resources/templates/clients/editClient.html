@@ -56,7 +56,7 @@
                             <div class="col">
                                 <button type="submit" form="theForm" class="btn btn-primary btn-sm custom-buttons" value="Save">Save</button>
                                 <a class="btn btn-primary btn-sm custom-buttons" data-th-href="@{/clients}">Cancel</a>
-                                <a class="btn btn-primary btn-sm custom-buttons" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
+                                <a class="btn btn-primary btn-sm custom-buttons confirm-delete" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
                                 <a class="btn btn-outline-secondary btn-sm custom-buttons" data-th-if="${command.id != null}" data-toggle="collapse"
                                     href="#collapseAddNewPet" role="button" aria-expanded="false" aria-controls="collapseAddNewPet">
                                     add pet
@@ -148,7 +148,7 @@
                                                 <small class="text-muted">
                                                     <span>#</span><a data-th-href="@{/pets/{pid}?clientId={cid}(pid=${pet.id}, cid=${command.id})}"
                                                         data-th-text="${pet.id}" class="text-body">...</a>
-                                                    <a class="" data-th-href="@{'/pets/'+${pet.id}+'/delete'}"
+                                                    <a class="confirm-delete" data-th-href="@{'/pets/'+${pet.id}+'/delete'}"
                                                         data-th-value="${command.id}">Delete</a> |
                                                     <a class="edit-pet-link" href="#" onclick="poppy(event);"
                                                         data-th-value="${pet.id}">Edit Pet</a> |

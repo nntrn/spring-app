@@ -18,7 +18,7 @@
         <!-- Main Content --------------------------------------->
 
             <h2 class="lead">appointments table</h2>
-            <div class="table-responsive">
+            <div class="table-responsive" data-th-if="${appointments.size() > 0}">
               <table class="table table-sm table-bordered">
       				<thead>
       					<tr>
@@ -32,16 +32,16 @@
       				</thead>
       				<tbody>	
       					<tr data-th-each="appointment : ${appointments}">
-      						<td data-th-text="${appointment.id}">...</td>
-      						<td data-th-text="${appointment.client_id}">...</td>
-      						<td data-th-text="${appointment.pet_id}">...</td>
-      						<td data-th-text="${appointment.appt_date}">...</td>
-      						<td data-th-text="${appointment.appt_time}">...</td>
-      						<td data-th-text="${appointment.appt_type}">...</td>
+                            <td data-th-text="${appointment.id}">...</td>
+      						<td data-th-text="${appointment.clientId}">...</td>
+      						<td data-th-text="${appointment.petId}">...</td>
+      						<td data-th-text="${appointment.apptDate}">...</td>
+      						<td data-th-text="${appointment.apptTime}">...</td>
+      						<td data-th-text="${appointment.apptType}">...</td>
       					</tr>
       				</tbody>
                   </table>
-                  </div>
+        </div>
                   
     
 
