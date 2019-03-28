@@ -80,7 +80,7 @@ body {
 
 .sidebar .sidebar-brand .sidebar-brand-icon i {
   color: #fff;
-  opacity: .4;
+  opacity: .75;
   font-size: 2.5em;
   background-color: #9e7cc1;
   transition: box-shadow 500ms;
@@ -291,6 +291,10 @@ form:hover label {
     width: 12vw;
   }
 
+  .sidebar .sidebar-brand .sidebar-brand-icon i {
+    opacity: 1;
+  }
+
   .sidebar-brand .sidebar-brand-text {
     display: none;
     position: absolute;
@@ -307,8 +311,12 @@ form:hover label {
   }
 
   .sidebar .nav-item .nav-link {
-    width: 12vw;
-    font-size: 1.3em;
+    width: 11vw;
+    font-size: 1.15em;
+    margin: .25rem auto;
+    padding: .5rem;
+    border-radius: 10%;
+
   }
 
   .sidebar .nav-item .collapse {
@@ -317,4 +325,7 @@ form:hover label {
   }
 }
 
-.topbar .dropdown .dropdown-menu{width: calc(30vw - 1.5rem); right: .75rem}
+.topbar .dropdown .dropdown-menu {
+  width: calc(30vw - 1.5rem);
+  right: .75rem
+}
