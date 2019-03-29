@@ -51,7 +51,7 @@
   <a class="pure-button" data-th-if="${fromClientPage}" data-th-href="@{/clients/{c}(c=${command.client.id})}">Cancel</a>
   <a class="pure-button" data-th-if="${!fromClientPage}" data-th-href="@{/pets}">Cancel</a>
 
-  <a class="pure-button js-confirm-delete" data-th-href="@{'/pets/'+${command?.id}+'/delete'}">Delete</a>
+  <a class="pure-button" data-toggle="confirmation" data-th-href="@{'/pets/'+${command?.id}+'/delete'}">Delete</a>
 
 <!-- end ------------------------------------------------->
 </div>
