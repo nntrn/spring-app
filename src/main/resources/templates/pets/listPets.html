@@ -22,7 +22,7 @@
           <span data-th-text="${pet.name}" class="text-capitalize">...</span>
           <div class="edit-links">
             <a data-th-href="@{/pets/{id}(id=${pet.id})}" class="small text-primary"><i class="fas fa-pencil-alt"></i></a>
-            <a data-th-href="@{/pets/{id}/delete(id=${pet.id})}" class="small text-primary js-confirm-delete"><i class="fas fa-trash-alt"></i></a>
+            <a data-th-href="@{/pets/{id}/delete(id=${pet.id})}" class="small text-primary" data-toggle="confirmation"><i class="fas fa-trash-alt"></i></a>
           </div>
         </td>
         <td data-th-text="${pet.gender}" class="text-uppercase">...</td>
