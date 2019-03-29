@@ -14,11 +14,13 @@
   background-image: unset;
   border-color: #d1d3e2;
 }
-.form-control.is-invalid,.was-validated .form-control:invalid {
 
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
   padding-right: 0;
   background-image: unset;
 }
+
 .was-validated .form-check-input:valid~.form-check-label {
   color: unset;
   border-color: unset;
@@ -50,12 +52,12 @@
 body {
   background: #79589f;
   color: #3f3f44;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji
-
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
 
 .sidebar .sidebar-brand {
-  padding: 1em 0;
+  padding:0;
+  height:100px;
   display: flex;
   overflow: hidden;
   flex-direction: column;
@@ -63,7 +65,8 @@ body {
   align-items: center;
   color: #9e7cc1;
   text-transform: uppercase;
-  font-weight: normal
+  font-weight: normal;
+
 }
 
 .sidebar .sidebar-brand .sidebar-brand-text {
@@ -101,6 +104,10 @@ body {
   text-decoration: none;
 }
 
+.sidebar #sidebarToggle::after {
+  color: #9e7cc1 !important;
+}
+
 .shadow {
   box-shadow: 0 .15rem .5rem rgba(0, 0, 0, .075) !important;
 }
@@ -109,8 +116,55 @@ body {
   background-color: #fff;
 }
 
-.sidebar-dark #sidebarToggle {
+#wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#content {
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  height: 5vh;
+  min-height: 3rem;
+  margin: 0;
+  top: 0;
+  padding: 0;
+  position: sticky;
+  width: 100%;
+  z-index: 10000;
+}
+
+.container-fluid {
+  bottom: 0;
+  overflow: scroll;
+  height: 85vh;
+  width: 100%;
+  padding-top: 1rem;
+  position: relative;
+  overflow: scroll;
+  background-color: #fff;
+  box-shadow: inset 0 -.2rem 1rem .1rem rgba(0, 0, 0, 0.05)
+}
+
+#sidebarToggleTop {
+  margin-right: unset;
+  margin: .3rem;
+  padding: unset;
+  padding: 0;
+}
+
+#sidebarToggle {
   background-color: rgba(255, 255, 255, .05)
+}
+
+#sidebarToggleTop:focus {
+  box-shadow: 0;
 }
 
 .btn.custom-buttons {
@@ -175,12 +229,12 @@ form.custom-labels:hover label {
   text-decoration: none;
   position: absolute;
   right: 0;
-  top: 1px;
+  top: 0;
   padding: 0px 3px;
-  background-color: rgba(255, 255, 255, .8);
   text-align: right;
   width: 100%;
   height: 96%;
+  margin-top: -3px;
   z-index: 1000;
   font-size: 1.3em;
 }
@@ -188,12 +242,12 @@ form.custom-labels:hover label {
 .edit:hover .edit-links,
 .edit:focus .edit-links {
   display: block;
-  opacity: 1
+  opacity: 1;
 }
 
 .edit:hover,
 .edit:focus {
-  background-color: rgba(0, 0, 0, .08);
+  background-color: rgba(0, 0, 0, .05);
 }
 
 .edit {
@@ -206,18 +260,17 @@ form.custom-labels:hover label {
 
 .edit:after {
   content: "\f044";
-  font-family: fontawesome;
+  font-family: 'Font Awesome 5 Free';
   text-align: right;
   bottom: 20%;
   display: inline-block;
   position: absolute;
-  right: 2px;
+  margin-left: 4px;
   z-index: 1000;
-  flex-direction: colum;
   background: #fff;
   color: #8DCAE9;
-  line-height: 90%;
-  font-size: 1.1em;
+  opacity: .4;
+  font-size: .8em;
 }
 
 .edit-links a {
@@ -256,8 +309,10 @@ form.custom-labels:hover label {
   color: rgba(0, 0, 0, .55)
 }
 
+.table-sm td,
 .table-sm th {
-  padding: 0 .3rem
+  padding: .1rem .3rem;
+  color: #3f3f44;
 }
 
 .sidebar .nav-item .collapse .collapse-inner,
@@ -276,7 +331,21 @@ form.custom-labels:hover label {
   text-align: center;
 }
 
-@media (max-width: 440px) {
+@media (max-height: 300px) {
+  .sidebar {
+    display: none;
+    width: 10vw;
+  }
+}
+
+@media (max-width: 440px) and (orientation: potrait) {
+  .sidebar {
+    display: none;
+    width: 10vw;
+  }
+}
+
+@media (max-width: 600px) {
   .sidebar {
     width: 12vw;
   }
@@ -306,12 +375,18 @@ form.custom-labels:hover label {
     margin: .25rem auto;
     padding: .5rem;
     border-radius: 10%;
-
   }
 
   .sidebar .nav-item .collapse {
     left: 10vw;
     top: 2vh;
+  }
+
+  .container-fluid {
+    display: block;
+    height: 90vh;
+    width: 100%;
+    padding: .5rem 1rem;
   }
 }
 
@@ -329,4 +404,22 @@ form.custom-labels:hover label {
 
 .custom.card-body {
   overflow: hidden
+}
+
+.dropdown-item {
+  color: #999;
+  margin: unset;
+  padding: 0 .6rem;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: .25rem
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa
 }
