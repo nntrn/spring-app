@@ -1,3 +1,5 @@
+-- CONNECTION: name=SQLite - spring-app.db
+
 DROP TABLE IF EXISTS clients;
 DROP TABLE IF EXISTS pets;
 DROP TABLE IF EXISTS appointments;
@@ -19,19 +21,38 @@ CREATE TABLE IF NOT EXISTS pets (
 	FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS appointments(
+CREATE INDEX IF NOT EXISTS pets_name_index ON pets (name);
+
+CREATE TABLE appointments(
 	id integer PRIMARY KEY AUTOINCREMENT,
-	client_id integer,
-	pet_id integer, 
+	pet_id integer REFERENCES pets(id),
 	appt_type varchar(25),
 	appt_date varchar(25),
 	appt_time varchar(25),
-	FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE
+	created DATE DEFAULT CURRENT_DATE
 );
+
+CREATE INDEX IF NOT EXISTS appt_pet_id_index ON appointments (pet_id);
 
 CREATE TABLE IF NOT EXISTS users (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	username varchar(255),
-	encoded_password varchar(255),
-	role varchar(255)
+	username varchar(255) NOT NULL UNIQUE,
+	encoded_password varchar(255) NOT NULL,
+	role varchar(255) DEFAULT 'USER'
 );
+
+
+-- misc tables
+
+DROP TABLE IF EXISTS visits;
+
+CREATE TABLE IF NOT EXISTS  visits (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  pet_id      INTEGER NOT NULL REFERENCES pets(id),
+  visit_date  DATE,
+  created 	  DATE DEFAULT CURRENT_DATE,
+  description VARCHAR(255)
+);
+
+CREATE INDEX IF NOT EXISTS  visits_pet_id_index ON visits (pet_id);
+
