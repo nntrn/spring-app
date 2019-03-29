@@ -1,5 +1,7 @@
 package springapp.command;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import springapp.domain.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Pet;
@@ -12,10 +14,9 @@ import springapp.domain.Pet;
 public class AppointmentCommand {
 
 	private Integer id;
-	private Integer client_id;
 	private Integer pet_id;
-	private String appt_time;
-	private String appt_date;
+	private Integer appt_time;
+	private Date appt_date;
 	private String appt_type;
 	private Pet pet;
 	private Client client;
@@ -29,7 +30,6 @@ public class AppointmentCommand {
 	public AppointmentCommand(Appointment appointment) {
 		if (appointment != null) {
 			id = appointment.getId();
-			this.client_id = appointment.getClientId();
 			this.pet_id = appointment.getPetId();
 			this.appt_date = appointment.getApptDate();
 			this.appt_time = appointment.getApptTime();
@@ -39,33 +39,19 @@ public class AppointmentCommand {
 	
 	public AppointmentCommand() {}
 
-	
-//	public AppointmentCommand(Integer pet_id) {
-//		this.pet_id = pet_id;
-//	}
-//	
-//	public AppointmentCommand(Pet pet) {
-//		this.pet_id = pet.getId();
-//		this.client_id = pet.getClientId();
-//	}
-
 	public Integer getId() {
 		return id;
-	}
-
-	public Integer getClientId() {
-		return client_id;
 	}
 
 	public Integer getPetId() {
 		return pet_id;
 	}
 
-	public String getApptTime() {
+	public Integer getApptTime() {
 		return appt_time;
 	}
 
-	public String getApptDate() {
+	public Date getApptDate() {
 		return appt_date;
 	}
 
@@ -77,19 +63,15 @@ public class AppointmentCommand {
 		this.id = id;
 	}
 
-	public void setClientId(Integer client_id) {
-		this.client_id = client_id;
-	}
-
 	public void setPetId(Integer pet_id) {
 		this.pet_id = pet_id;
 	}
 
-	public void setApptTime(String appt_time) {
+	public void setApptTime(Integer appt_time) {
 		this.appt_time = appt_time;
 	}
 
-	public void setApptDate(String appt_date) {
+	public void setApptDate(Date appt_date) {
 		this.appt_date = appt_date;
 	}
 
@@ -100,7 +82,7 @@ public class AppointmentCommand {
 	public Pet getPet() {
 		return pet;
 	}
-
+	
 	public void setPet(Pet pet) {
 		this.pet = pet;
 	}

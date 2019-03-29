@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,10 @@ public class AppointmentDao {
 		@Override
 		public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
-			Appointment appointment = new Appointment(rs.getInt("id"), rs.getInt("client_id"), rs.getInt("pet_id"), rs.getString("appt_time"), rs.getString("appt_date"), rs.getString("appt_type"));
-			Client client = clientDao.get(rs.getInt("client_id"));
+			Appointment appointment = new Appointment(rs.getInt("id"), rs.getInt("pet_id"), rs.getInt("appt_time"), rs.getDate("appt_date"), rs.getString("appt_type"));
 			Pet pet = petDao.get(rs.getInt("pet_id"));
+			Client client = pet.getClient();
+
 			appointment.setClient(client);
 			appointment.setPet(pet);
 			
@@ -55,7 +57,7 @@ public class AppointmentDao {
     JdbcTemplate jdbcTemplate;
     	
 	public List<Appointment> list(){
-		List<Appointment> queryResult = jdbcTemplate.query("SELECT id, client_id, pet_id, appt_time, appt_date, appt_type FROM appointments",
+		List<Appointment> queryResult = jdbcTemplate.query("SELECT id, pet_id, appt_time, appt_date, appt_type FROM appointments",
 				simpleApptMapper);
 		
 		return queryResult;
@@ -83,11 +85,11 @@ public class AppointmentDao {
 			
 				@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments (client_id, pet_id, appt_time, appt_date, appt_type) VALUES (?, ?, ?, ?, ?)");
-					statement.setInt(1, appointment.getClientId());
+					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments (pet_id, appt_time, appt_date, appt_type) VALUES (?, ?, ?, ?)");
+
 					statement.setInt(2, appointment.getPetId());
-					statement.setString(3, appointment.getApptTime());
-					statement.setString(4, appointment.getApptDate());
+					statement.setInt(3, appointment.getApptTime());
+					statement.setDate(4, appointment.getApptDate());
 					statement.setString(5, appointment.getApptType());
 					return statement;
 				}
@@ -96,8 +98,8 @@ public class AppointmentDao {
 			id = holder.getKey().intValue();
 			
 		} else {
-			jdbcTemplate.update("UPDATE appointments SET client_id = ?, pet_id = ? , appt_time = ?, appt_date = ?, appt_type = ? WHERE id = ?",
-					new Object[] {appointment.getClientId(), appointment.getPetId(), appointment.getApptTime(),  appointment.getApptDate(),  appointment.getApptType(), id});
+			jdbcTemplate.update("UPDATE appointments SET pet_id = ? , appt_time = ?, appt_date = ?, appt_type = ? WHERE id = ?",
+					new Object[] {appointment.getPetId(), appointment.getApptTime(),  appointment.getApptDate(),  appointment.getApptType(), id});
 		}
 		
 		return get(id);
