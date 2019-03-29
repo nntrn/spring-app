@@ -1,25 +1,11 @@
-<!DOCTYPE HTML>
-<html>
-<header th:replace="fragments/head.html :: head"></header>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-steps@1.1.0/demo/css/jquery.steps.min.css">
+<header th:replace="fragments/includes/tophalf.html"></header>
 
-<body id="page-top">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-    <!-- Sidebar -->
-    <div th:replace="fragments/includes/sidebar.html :: sidebar"></div>
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
+<div class="container-fluid">
 
+<!-- Main Content --------------------------------------->
 
-      <div id="content">
-        <div th:replace="fragments/includes/topbar.html :: topbar"></div>
-        <div class="container-fluid">
-
-          <!-- Main Content --------------------------------------->
-
-          <h2 class="lead">edit appointment</h2>
+          <h3>edit appointment</h3>
 
             <div id="example-basic">
                 <h3>Keyboard</h3>
@@ -37,30 +23,20 @@
             </div>
       
 
-          <!-- end ------------------------------------------------->
+<!-- end ------------------------------------------------->        
+</div>
 
-        </div>
-      </div>
+<footer th:replace="fragments/includes/bottomhalf.html"></footer>
+<!-- add additional scripts below -->
 
-
-      <footer th:replace="fragments/footer.html :: footer"></footer>
-    </div>
-  </div>
-  <header th:replace="fragments/includes/plugins.html :: script"></header>
-
-  <!-- add additional scripts here  -->
-
-  <!-- TODO form wizard -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.js"></script>
 
-  <script>
+<script>
   $("#example-basic").steps({
     headerTag: "h3",
     bodyTag: "section",
     transitionEffect: "slideLeft",
     autoFocus: true
 });
-  </script>
-</body>
+</script>
 
-</html>

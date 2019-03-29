@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<header th:replace="fragments/head.html :: head"></header>
+
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="fragments/includes/sidebar.html :: sidebar"></div>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
+
+
+      <div id="content">
+        <div th:replace="fragments/includes/topbar.html :: topbar"></div>
+        <div class="container-fluid">
+         
+        <!-- Main Content --------------------------------------->
+
+            <h3>pet table</h3>
+            <div class="table-responsive">
+                <table class="table table-sm">
+                <thead>
+                    <tr class="bg-white">
+                        <th>id</th>
+                        <th>name</th>
+                        <th>gender</th>
+                        <th>altered</th>
+                        <th>owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-th-each="pet : ${pets}">
+                        <td data-th-text="${pet.id}">...</td>
+                        <td class="edit">
+                            <span data-th-text="${pet.name}" class="text-capitalize">...</span>
+                            <div class="edit-links">
+                                <a data-th-href="@{/pets/{id}(id=${pet.id})}" class="small text-primary"><i class="fas fa-pencil-alt"></i></a>
+                                <a data-th-href="@{/pets/{id}/delete(id=${pet.id})}" class="small text-primary js-confirm-delete"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                        <td data-th-text="${pet.gender}" class="text-uppercase">...</td>
+                        <td data-th-text="${pet.altered}" class="text-uppercase">...</td>
+                        <td class="edit">
+                            <span data-th-text="${pet.client.name}" class="text-capitalize">...</span>-<span data-th-text="${pet.client.id}">...</span>
+                        
+                            <div class="edit-links">
+                                 <a data-th-href="@{/clients/{id}(id=${pet.clientId})}" class="small text-primary"><i class="fas fa-pencil-alt"></i></a>
+                            </div>
+                           
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            
+
+
+        <!-- end ------------------------------------------------->
+        
+        </div>
+      </div>
+
+      <footer th:replace="fragments/footer.html :: footer"></footer>
+    </div>
+  </div>
+  <header th:replace="fragments/includes/plugins.html :: script"></header>
+
+</body>
+
+</html>

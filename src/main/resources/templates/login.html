@@ -1,60 +1,38 @@
-<!DOCTYPE HTML>
-<html>
-<header th:replace="fragments/head.html :: head"></header>
-
+<header th:replace="fragments/includes/tophalf.html"></header>
 <body id="page-top" class="text-center">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-    <!-- Sidebar -->
-    <div th:replace="fragments/includes/sidebar.html :: sidebar"></div>
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
+<div class="container-fluid">
 
-      <div id="content">
-        <div th:replace="fragments/includes/topbar.html :: topbar"></div>
-        <div class="container-fluid">
+<!-- Main Content --------------------------------------->
 
-          <!-- Main Content --------------------------------------->
-
-          <h2>log in </h2>
-          <div class="row mb-3">
-            <div data-th-if="${param.error}" class="message-box-error col">
-              Invalid username and password
-            </div>
-            <div data-th-if="${param.logout}" class="message-box-info col">
-              You have been logged out
-            </div>
-          </div>
-          <div class="row justify-content-center">
-
-            <form data-th-action="@{/login}" method="post" class="form-signin">
-
-              <div class="form-group col-sm">
-                <label for="username" class="sr-only">Username</label>
-                <input id="username" name="username" type="text" class="form-control form-control-sm" placeholder="Username">
-              </div>
-              <div class="form-group col-sm">
-                <label for="password" class="sr-only">Password</label>
-                <input id="password" name="password" type="password" class="form-control form-control-sm" placeholder="Password">
-              </div>
-              <div class="form-group col-sm">
-                <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
-              </div>
-            </form>
-
-          </div>
-        </div>
+    <h2>log in </h2>
+    <div class="row mb-3">
+      <div data-th-if="${param.error}" class="message-box-error col">
+        Invalid username and password
       </div>
-
-      <!-- end ------------------------------------------------->
-
-      <footer th:replace="fragments/footer.html :: footer"></footer>
+      <div data-th-if="${param.logout}" class="message-box-info col">
+        You have been logged out
+      </div>
     </div>
-  </div>
-  <header th:replace="fragments/includes/plugins.html :: script"></header>
 
-  <!-- add additional scripts here  -->
+    <div class="row justify-content-center">
+      <form data-th-action="@{/login}" method="post" class="form-signin">
+        <div class="form-group col-sm">
+          <label for="username" class="sr-only">Username</label>
+          <input id="username" name="username" type="text" class="form-control form-control-sm" placeholder="Username">
+        </div>
+        <div class="form-group col-sm">
+          <label for="password" class="sr-only">Password</label>
+          <input id="password" name="password" type="password" class="form-control form-control-sm" placeholder="Password">
+        </div>
+        <div class="form-group col-sm">
+          <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
+        </div>
+      </form>
+    </div>
 
-</body>
+    
+<!-- end ------------------------------------------------->
+</div>
+<footer th:replace="fragments/includes/bottomhalf.html"></footer>
+<!-- add additional scripts below -->
 
-</html>
