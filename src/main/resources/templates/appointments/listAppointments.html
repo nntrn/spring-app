@@ -9,7 +9,6 @@
       <thead>
         <tr>
           <th>id</th>
-          <th>client</th>
           <th>pet</th>
           <th>date</th>
           <th>time</th>
@@ -19,8 +18,7 @@
       <tbody>
         <tr data-th-each="appointment : ${appointments}">
           <td data-th-text="${appointment.id}">...</td>
-          <td data-th-text="${appointment.clientId}">...</td>
-          <td data-th-text="${appointment.petId}">...</td>
+          <td data-th-text="${appointment.pet.name}">...</td>
           <td data-th-text="${appointment.apptDate}">...</td>
           <td data-th-text="${appointment.apptTime}">...</td>
           <td data-th-text="${appointment.apptType}">...</td>
