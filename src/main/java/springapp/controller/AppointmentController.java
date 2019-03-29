@@ -1,7 +1,6 @@
 package springapp.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,12 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import springapp.command.AppointmentCommand;
-import springapp.command.PetCommand;
 import springapp.domain.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Pet;
@@ -52,7 +49,6 @@ public class AppointmentController {
 		return "appointments/listAppointments";
 	}
 	
-
 	@PreAuthorize("hasAuthority('GET_APPOINTMENT')")
 	@GetMapping("/{id}")
 	public String getAppointment(@PathVariable("id") String id,
@@ -70,34 +66,27 @@ public class AppointmentController {
 			appointmentCommand = new AppointmentCommand();
 			
 		} else {
-            // else we should get the pet command that is a copy of the pet
-            // so we get the pet from the service
-			
-			//Pet pet = petService.getPet(pet_id);
-			//Client client = pet.getClient();
 			
             Appointment appointment = appointmentService.getAppointment(id);
      
             appointmentCommand = new AppointmentCommand(appointment);
             appointmentCommand.setPetId(appointmentCommand.getPetId());
-            appointmentCommand.setClientId(appointmentCommand.getClientId());
             appointmentCommand.setApptTime(appointmentCommand.getApptTime());
             appointmentCommand.setApptDate(appointmentCommand.getApptDate());
             appointmentCommand.setApptType(appointmentCommand.getApptType());
             
-    		//appointmentCommand.setPet(pet);
-    		//appointmentCommand.setClientId(pet.getClientId());
-    		//appointmentCommand.setClient(client);
+    		Pet pet = petService.getPet(pet_id.toString());
+    		Client client = pet.getClient();
+    		appointmentCommand.setPet(pet);
+    		appointmentCommand.setClient(client);
     		
     		model.addAttribute("saved2", saved);
 		}
 		
-
 		// we add the command pet command instance to the mode (which has the client instance as well as the pet info)
 		model.addAttribute("command", appointmentCommand);
 		return "appointments/editAppointment";
 	}
-	
 	
 	
 	@PreAuthorize("hasAuthority('SAVE_APPOINTMENT')")
@@ -107,8 +96,6 @@ public class AppointmentController {
 
 	        // we pass in the pet command to the service to update or create a new pet
 	        Appointment appointment = appointmentService.saveAppointment(command);
-	        
-	        //String pid = appointment.getPetId().toString();
 
 	        redirectAttributes.addAttribute("saved", true);
 	        if(fromPetPage) {
