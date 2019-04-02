@@ -1,18 +1,15 @@
 <!DOCTYPE HTML>
-<html data-th-fragment="tophalf :: html">
+<html>
 <header th:replace="fragments/head.html :: head"></header>
 
 <body>
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-    <!-- Sidebar -->
-    <div th:replace="fragments/includes/sidebar.html :: sidebar"></div>
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column" data-th-fragment="content-wrapper">
 
-      <div id="content">
-        <div th:replace="fragments/includes/topbar.html :: topbar"></div>
+  <div id="wrapper" class="container-fluid">
+    <div th:replace="fragments/includes/topbar.html :: topbar"></div>
+    <footer th:replace="fragments/footer.html :: footer" class="pt-3"></footer>
+    <div id="content-wrapper" class="d-flex">
+        <div th:replace="fragments/includes/sidebar.html :: sidebar"></div>
 
-
+        
 </body>
 </html>
