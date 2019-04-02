@@ -1,7 +1,7 @@
 insert into users values (null, 'admin', 'password', 'SUPER_ADMIN');
-insert into users values (null, 'vet_user', 'vet', 'vet');
-insert into users values (null, 'front_desk', 'password', 'receptionist');
-insert into users values (null, 'user', 'password', 'user');
+insert into users values (null, 'manager', 'password', 'MANAGER');
+insert into users values (null, 'vet', 'password', 'VET');
+insert into users values (null, 'user', 'password', 'USER');
 
 -- test data
 -- generated at: https://www.generatedata.com/
@@ -411,3 +411,15 @@ VALUES
   (NULL, "Lion King", "Female", 1, 77),
   (NULL, "My Everything", "Female", 1, 8),
   (NULL, "Moonsine", "Male", 0, 27);
+
+INSERT INTO veterinarians (id, name, day_off)
+VALUES (31,"Gilmore, Kareem K.",3),
+       (32,"Ryan, Pamela M.",4),
+       (33,"Hooper, Lois S.",2),
+       (34,"Hensley, Hilda U.",3),
+       (35,"Hobbs, James J.",3),
+       (36,"Fuller, Jin C.",5),
+       (37,"Alvarado, Norman P.",2),
+       (38,"Hayden, Heidi O.",2),
+       (39,"Delaney, Raya U.",2),
+       (40,"Holcomb, Maia F.",2);

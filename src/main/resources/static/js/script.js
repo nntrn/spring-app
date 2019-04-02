@@ -1,4 +1,4 @@
-// format phone number fields
+//format phone number fields
 $('.js-format-phone').mask('(000)-000-0000')
 
 // filter tables using the topbar search input 
@@ -38,72 +38,3 @@ $('[data-toggle=custom-confirmation-events]')
   .on('myevent', function () {
     alert('"myevent" triggered');
   });
-
-$('#custom-confirmation').confirmation({
-  rootSelector: '#custom-confirmation',
-  container: 'body',
-  title: '',
-  onConfirm: function (value) {
-    alert('You choosed ' + value);
-  },
-  buttons: [{
-      class: 'btn btn-sm btn-danger',
-      iconClass: 'material-icons mr-1',
-      iconContent: 'directions_railway',
-      label: 'Railway',
-      value: 'Railway'
-    },
-    {
-      class: 'btn btn-sm btn-primary',
-      iconClass: 'material-icons mr-1',
-      iconContent: 'directions_car',
-      label: 'Car',
-      value: 'Car'
-    },
-    {
-      class: 'btn btn-sm btn-warning',
-      iconClass: 'material-icons mr-1',
-      iconContent: 'directions_boat',
-      label: 'Boat',
-      value: 'Boat'
-    },
-    {
-      class: 'btn btn-sm btn-secondary',
-      iconClass: 'material-icons mr-1',
-      iconContent: 'cancel',
-      label: 'Cancel',
-      cancel: true
-    }
-  ]
-});
-
-$('#custom-confirmation-links').confirmation({
-  rootSelector: '#custom-confirmation-link',
-  container: 'body',
-  title: '',
-  buttons: [{
-      label: 'Twitter',
-      iconClass: 'fa fa-twitter fa-lg mr-1',
-      attr: {
-        href: 'https://twitter.com',
-        target: '_blank'
-      }
-    },
-    {
-      label: 'Facebook',
-      iconClass: 'fa fa-facebook fa-lg mr-1',
-      attr: {
-        href: 'https://facebook.com',
-        target: '_blank'
-      }
-    },
-    {
-      label: 'Pinterest',
-      iconClass: 'fa fa-pinterest fa-lg mr-1',
-      attr: {
-        href: 'https://pinterest.com',
-        target: '_blank'
-      }
-    }
-  ]
-});
