@@ -18,6 +18,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import springapp.domain.Client;
+import springapp.domain.Pet;
 
 /**
  * This is the client dao that is responsible for managing the clients info in
@@ -30,7 +31,6 @@ public class ClientDao {
 	private Logger logger = LoggerFactory.getLogger(ClientDao.class);
 
 	RowMapper<Client> simpleMapper = new RowMapper<Client>() {
-
 		@Override
 		public Client mapRow(ResultSet rs, int rowNum) throws SQLException {
 			return new Client(rs.getInt("id"), rs.getString("name"), rs.getString("phone_number"), rs.getString("address"));
@@ -100,7 +100,6 @@ public class ClientDao {
 	public void delete(int id) {
 
 		jdbcTemplate.update("DELETE FROM pets WHERE client_id = ?", new Object[] { id });
-
 		jdbcTemplate.update("DELETE FROM clients WHERE id = ?", new Object[] { id });
 
 	}
