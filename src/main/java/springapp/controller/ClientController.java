@@ -12,11 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import springapp.command.ClientCommand;
+import springapp.domain.Appointment;
 import springapp.domain.Client;
+import springapp.domain.Pet;
+import springapp.service.AppointmentService;
 import springapp.service.ClientService;
+import springapp.service.PetService;
 
 /**
  * This controller handles all client related pages
@@ -24,34 +29,43 @@ import springapp.service.ClientService;
  * Notice the @PreAuthorize annotations on the methods
  */
 @Controller
-@RequestMapping("/clients") //notice that this path is set at the class level.
+@RequestMapping("/clients") // notice that this path is set at the class level.
 public class ClientController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // Inject in a ClientService claass
-	@Autowired
-	ClientService clientService;
+    @Autowired
+    ClientService clientService;
+
+    @Autowired
+    PetService petService;
+
 
     /**
-     * Returns the name of the view template that should be used along witht the model to draw the list of clients
+     * Returns the name of the view template that should be used along witht the
+     * model to draw the list of clients
      *
-     * Note that no addiontal path is specified, and that this method only handles a GET
-     * @param model the model to populate for merging  with the view
-
-    * @return the client list page template
+     * Note that no addiontal path is specified, and that this method only handles a
+     * GET
+     * 
+     * @param model the model to populate for merging with the view
+     * 
+     * @return the client list page template
      */
-	 @PreAuthorize("hasAuthority('LIST_CLIENTS')")
-	 @GetMapping
-	 public String listClients(Model model) {
-		 logger.info("ANCHOR");
-		 logger.info("listClients");
-		 
+    @PreAuthorize("hasAuthority('LIST_CLIENTS')")
+    @GetMapping
+    public String listClients(Model model,@RequestParam(name = "clientId", required = false) Integer clientId) {
+        logger.info("ANCHOR");
+        logger.info("listClients");
+
         List<Client> clients = clientService.getClients();
-		model.addAttribute("clients", clients);
+        List<Pet> pets = clientService.getPets();
+        model.addAttribute("clients", clients);
+        model.addAttribute("pets", pets);
+       // model.addAttribute("appointments", clientService.getAppointments(client.getId()) );
         return "clients/listClients";
     }
-
 
     /**
      * Generates the model for rendering the specific client page
@@ -78,7 +92,8 @@ public class ClientController {
 
 			// we get the list of pets, and send those as is since we dont need a command to carry changes to the pets
             // from this page
-			model.addAttribute("pets", clientService.getPets(client.getId()) );
+            model.addAttribute("pets", clientService.getPets(client.getId()) );
+            model.addAttribute("appointments", clientService.getAppointments(Integer.parseInt(id)) );
 		}
 		return "clients/editClient";
 	}

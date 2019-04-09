@@ -48,56 +48,55 @@
 
   <!-- ADD NEW PET --------->
 
-  <div class="collapse" id="collapseAddNewPet">
-    <div class="card card-body mb-2 col border-1 bg-transparent p-2">
-      <h4 class="text-muted font-weight-light">new pet</h4>
-
-      <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}" method="post">
-        <input name="clientId" type="hidden" data-th-value="${command.id}">
-
-        <div class="form-row was-validated align-items-center">
-          <div class="form-group col-6">
-            <label class="small mb-0" for="name">name</label>
-            <input id="name" name="name" placeholder="pet name" type="text" class="form-control form-control-sm text-capitalize" required>
-
-          </div>
-          <div class="form-group col-2">
-            <label for="gender" class="small mb-0">gender</label>
-            <select id="gender" name="gender" class="form-control form-control-sm">
-              <option value="Male" selected="selected">M</option>
-              <option value="Female">F</option>
-            </select>
-          </div>
-          <div class="form-check ml-2">
-            <input class="form-check-input" type="checkbox" id="altered" name="altered">
-            <label class="form-check-label small" for="altered" id="altered" name="altered" type="checkbox">
-              Altered
-            </label>
-          </div>
-
-          <div class="form-group col-auto">
-            <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0" value="add">Add</button>
-          </div>
-        </div>
-      </form>
-
-    </div>
-  </div>
-
   <div class="mt-4" data-th-if="${command.id != null}">
 
     <div data-th-if="${deleted}" class="message-box-info">
       Deleted successfully
     </div>
 
-    <!-- UPDATE PET INFO --------->
-
-    <div class="row" data-th-if="${pets.size() > 0}">
+    <div class="row">
       <div class="col-12 col-md-6 mb-3">
+        <h5 data-th-if="${pets.size() > 0}"><span data-th-text="${pets.size()}">...</span> pet(s):</h5>
 
-        <h5><span data-th-text="${pets.size()}">...</span> pet(s):</h5>
+        <!-- ADD NEW PET --------->
+        <div class="collapse" id="collapseAddNewPet">
+          <div class="card card-body mb-2 col border-1 bg-transparent p-2 border border-primary">
+            <h4 class="text-muted font-weight-light">new pet</h4>
 
-        <div class="card mb-3 p-0 border-0" data-th-each="pet, rowStat : ${pets}">
+            <form class="needs-validation" id="petForm" action="#" data-th-action="@{/pets}" method="post">
+              <input name="clientId" type="hidden" data-th-value="${command.id}">
+
+              <div class="form-row was-validated align-items-center">
+                <div class="form-group col-6">
+                  <label class="small mb-0" for="name">name</label>
+                  <input id="name" name="name" placeholder="pet name" type="text" class="form-control form-control-sm text-capitalize" required>
+
+                </div>
+                <div class="form-group col-2">
+                  <label for="gender" class="small mb-0">gender</label>
+                  <select id="gender" name="gender" class="form-control form-control-sm">
+                    <option value="Male" selected="selected">M</option>
+                    <option value="Female">F</option>
+                  </select>
+                </div>
+                <div class="form-check ml-2">
+                  <input class="form-check-input" type="checkbox" id="altered" name="altered">
+                  <label class="form-check-label small" for="altered" id="altered" name="altered" type="checkbox">
+                    Altered
+                  </label>
+                </div>
+
+                <div class="form-group col">
+                  <button type="submit" form="petForm" class="btn btn-primary btn-sm border-0" value="add">Add</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+        <!-- UPDATE PET INFO --------->
+        <div class="card mb-3 p-1 pt-0 border-0" data-th-each="pet, rowStat : ${pets}">
           <div class="card-body p-0 mb-0" data-th-id="'updatePetForm-'+${pet.id}">
 
             <form data-th-action="@{/pets}" object="" data-th-id="'updateForm-'+${pet.id}" th:object="${pets}" method="post">
@@ -107,12 +106,12 @@
 
                 <div class="form-row p-1 mb-0 was-validated">
 
-                  <div class="form-group col mb-0">
+                  <div class="form-group col-6 mb-0">
                     <label class="small mb-0">name</label>
                     <input type="text" name="name" data-th-value="${pet.name}" class="form-control form-control-sm">
                   </div>
 
-                  <div class="form-group col-2 mb-0">
+                  <div class="form-group col-auto mb-0">
                     <label for="gender" class="small mb-0">gender</label>
                     <select id="gender" name="gender" class="form-control form-control-sm">
                       <option th:value="${pet.gender}" th:text="${#strings.substring(pet.gender,0,1)}"></option>
@@ -122,7 +121,7 @@
       
                   </div>
 
-                  <div class="form-group col-3 mb-0">
+                  <div class="form-group col-auto mb-0">
                     <label class="small mb-0">altered</label>
                     <select id="altered" name="altered" class="form-control form-control-sm">
                         <option th:value="${pet.altered}"  th:text="${{pet.altered}}"></option>
@@ -131,8 +130,8 @@
                     </select>
                   </div>
 
-                  <div class="form-group col-2 mb-0">
-                      <label class="small mb-0"></label>
+                  <div class="form-group col-auto m-0">
+                      <label class="small mb-0 p-0"></label>
                       <div class="small">
                         <a href="#" onclick="poppy(event);" data-th-value="${pet.id}">edit
                       </a>
@@ -162,21 +161,84 @@
 
       </div><!-- end pets -->
 
-      <!-- show appointments -->
-      <div class="col-12 col-md-6">
-        <h5><span></span> appointments(s):</h5>
-        <select id="selectedPet" name="selectedPet" class="form-control form-control-sm">
-            <!-- <option data-th-value="${pet.gender}"  data-th-text="${pet.gender}" ></option> -->
-            <option th:each="row,rowStat : ${pets}" 
-            th:value="${row.name}"
-            th:text="${row.name}">Wireframe</option>
-        </select>
+      <!-- <select id="selectedPet" name="selectedPet" class="form-control form-control-sm" onload="selectedPet()">
+          <option th:each="row,rowStat : ${pets}" 
+            th:value="${row.id}"
+            th:text="${row.name}">pet_name</option>
+          </select> -->
 
+          
+      <!-- show appointments -->
+   
+      <div class="col-12 col-md-6 mb-3" id="appointments" data-th-if="${appointments.size() > 0}">
+        <h5><span data-th-text="${appointments.size()}">...</span> appointments(s):</h5>
+
+        <div class="card mb-3 p-2 border-0" data-th-each="appt, rowStat : ${appointments}">
+        
+            <div class="card-body p-0 mb-0">
+
+            <form data-th-action="@{/appointments}" data-th-id="'updateApptForm-'+${appt.id}" object="" th:object="${appointments}" >
+                <fieldset data-th-id="'appointment-'+${appt.id}" disabled>
+                  <input type="hidden" name="id" data-th-value="${appt.id}">
+                  <input type="hidden" name="clientId" data-th-value="${command.id}">
+  
+                  <div class="form-row p-1 mb-0 was-validated">
+  
+                    <div class="col-12 mb-0">
+                        <div type="text" name="name" data-th-text="${appt.pet.name}" class="small"></div>
+                    </div>
+
+                    <input name="apptId" type="hidden" data-th-value="${appt.id}">
+                    <input name="clientId" type="hidden" data-th-value="${command.id}">
+
+                    <div class="form-group col-8 col-md-4 mb-0">
+                        <label class="small mb-0">date</label>
+                        <input type="text" name="ApptDate" data-th-value="${appt.ApptDate}" class="form-control form-control-sm">
+                    </div>
+
+                    <div class="form-group col-4 col-md-4 mb-0">
+                        <label class="small mb-0">time</label>
+                        <input type="text" name="ApptTime" data-th-value="${appt.ApptTime}" class="form-control form-control-sm">
+                    </div>
+
+                    <div class="form-group col-6 col-md-4 mb-0">
+                        <label class="small mb-0">type</label>
+                        <input type="text" name="visitType" data-th-value="${appt.visitType}" class="form-control form-control-sm">
+                    </div>
+                        
+
+                    <div class="form-group col mb-0">
+                        <label class="small mb-0">reason</label>
+                        <input type="text" name="reason" data-th-value="${appt.ApptReason}" class="form-control form-control-sm">
+                    </div>
+
+                    <div class="form-group col-3 mb-0">
+                        <label class="small mb-0">close</label>
+                        <input type="text" name="closeType" data-th-value="${appt.closeType}" class="form-control form-control-sm">
+                    </div>
+
+                  </div>
+  
+                </fieldset>
+              </form>
+
+            </div>
+  
+          </div>
       </div>
 
-    </div>
+      
+    
   </div>
-
+  <div class="reset bg-background" style="position:sticky;bottom:0;left:0;">
+      <hr class="m-0 mt-3">
+  <div class="m-1 d-flex p-0 justify-content-between">
+    <div class="m-0 p-0 small" th:if="${{command.id}}>1"><a data-th-href="@{/clients/{id}(id=${command?.id}-1)}" >previous</a></div>
+    <div class="m-0 p-0 small" th:text="${command.id}"></div>
+    <div class="m-0 p-0 small" th:if="${{command.id}}<${#numbers.formatInteger('50',3)}"><a data-th-href="@{/clients/{id}(id=${command?.id}+1)}">next</a></div>
+  </div>
+  <hr class="m-0">
+  </div>
 
 
   <!-- end ------------------------------------------------->
@@ -201,16 +263,17 @@
       sesame(id);
       unhide(id);
     }
-  
+ 
     function selectedPetForm(id) {
       let x = "#updatePetForm-" + id;
-      $(x)[0].classList.add("border")
+      $(x)[0].classList.add("bg-light")
     }
   
     function unhide(id) {
       let x = "#pets-edit-menu-" + id;
       $(x)[0].classList.remove("hide")
     }
+
   </script>
 
 </body>

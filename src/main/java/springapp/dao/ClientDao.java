@@ -20,8 +20,9 @@ import org.springframework.stereotype.Repository;
 import springapp.domain.Client;
 
 /**
- * This is the client dao that is responsible for managing the clients info in the databsae.
- * The dao acts as the 'gatekeeper' between the rest of the code and the database
+ * This is the client dao that is responsible for managing the clients info in
+ * the databsae. The dao acts as the 'gatekeeper' between the rest of the code
+ * and the database
  */
 @Repository
 @Scope("singleton")
@@ -35,42 +36,49 @@ public class ClientDao {
 			return new Client(rs.getInt("id"), rs.getString("name"), rs.getString("phone_number"), rs.getString("address"));
 		}
 	};
-	
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-    	
-	public List<Client> list(){
-		List<Client> queryResult = jdbcTemplate.query("SELECT id, name, phone_number, address FROM clients",
+
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+
+	public List<Client> list() {
+		List<Client> queryResult = jdbcTemplate.query("SELECT id, name, phone_number, address FROM clients ORDER BY id",
 				simpleMapper);
-		
-		return queryResult;
-	}
-	
-	public Client get(int id) {
-		List<Client> queryResult = jdbcTemplate.query("SELECT id, name, phone_number,address FROM clients WHERE id = ? LIMIT 1", 
-				new Object[] {id},
-				simpleMapper);
-		
-		if(queryResult.isEmpty()) {
+
+		// List<Client> queryResult = jdbcTemplate.query(
+		// "SELECT clients.id, clients.name, clients.phone_number, clients.address,
+		// pets.id as size FROM clients,pets where pets.client_id = clients.id ",
+		// simpleMapper);
+
+		if (queryResult.isEmpty()) {
 			return null;
 		}
-		
-		return queryResult.get(0);
-		
-		
+
+		return queryResult;
 	}
-	
+
+	public Client get(int id) {
+		List<Client> queryResult = jdbcTemplate.query(
+				"SELECT id, name, phone_number,address FROM clients WHERE id = ? LIMIT 1", new Object[] { id }, simpleMapper);
+
+		if (queryResult.isEmpty()) {
+			return null;
+		}
+
+		return queryResult.get(0);
+
+	}
+
 	public Client save(Client client) {
 		Integer id = client.getId();
-		if(id == null) {
-			
-			KeyHolder holder = new GeneratedKeyHolder();
+		if (id == null) {
 
+			KeyHolder holder = new GeneratedKeyHolder();
 			jdbcTemplate.update(new PreparedStatementCreator() {
-				
+
 				@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-					PreparedStatement statement = con.prepareStatement("INSERT INTO clients(name, phone_number, address) VALUES (?, ?, ?)");
+					PreparedStatement statement = con
+							.prepareStatement("INSERT INTO clients(name, phone_number, address) VALUES (?, ?, ?)");
 					statement.setString(1, client.getName());
 					statement.setString(2, client.getPhoneNumber());
 					statement.setString(3, client.getAddress());
@@ -78,26 +86,22 @@ public class ClientDao {
 
 				}
 			}, holder);
-			
+
 			id = holder.getKey().intValue();
-			
+
 		} else {
 			jdbcTemplate.update("UPDATE clients SET name = ?, phone_number = ? , address = ? WHERE id = ?",
-					new Object[] {client.getName(), client.getPhoneNumber(), client.getAddress(), id});
+					new Object[] { client.getName(), client.getPhoneNumber(), client.getAddress(), id });
 		}
-		
+
 		return get(id);
 	}
-	
-	
+
 	public void delete(int id) {
-		
-		jdbcTemplate.update("DELETE FROM pets WHERE client_id = ?",
-				new Object[] {id});
-		
-		
-		jdbcTemplate.update("DELETE FROM clients WHERE id = ?",
-				new Object[] {id});
-		
+
+		jdbcTemplate.update("DELETE FROM pets WHERE client_id = ?", new Object[] { id });
+
+		jdbcTemplate.update("DELETE FROM clients WHERE id = ?", new Object[] { id });
+
 	}
 }
