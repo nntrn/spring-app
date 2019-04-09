@@ -1,5 +1,6 @@
 package springapp.command;
 
+import springapp.domain.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Gender;
 import springapp.domain.Pet;
@@ -15,8 +16,7 @@ public class PetCommand {
 	private Gender gender;
 	private Integer clientId;
 	private Client client;
-	private String clientName; //TODO: i know theres an easier way to get client name
-
+	private Appointment appointment;
 	/**
 	 * Initialise an empty pet command with the client id set
 	 * @param clientId the client id
@@ -134,15 +134,14 @@ public class PetCommand {
 		this.client = client;
 	}
 	
-	// TODO:
-	// i dont think this code is needed but keeping just incase things break
-	public String getClientName() {
-		return clientName;
+	
+	public Appointment getAppointment() {
+		return appointment;
+	}
+	public void setAppointment(Appointment appointment) {
+		this.appointment = appointment;
 	}
 	
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
-	}
 	
 
 }
