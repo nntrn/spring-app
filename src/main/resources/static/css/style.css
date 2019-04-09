@@ -40,11 +40,6 @@
   border-bottom-left-radius: .35rem;
 }
 
-.pet-save {
-  border: unset;
-  padding: unset;
-}
-
 body {
   color: #3f3f44;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
@@ -187,13 +182,6 @@ form.custom-labels:hover label {
 
 .topbar .dropdown .dropdown-menu {
   right: .75rem
-}
-
-.pet-menu {
-  line-height: 110%;
-  margin-top: .5rem;
-  padding: .25em 0;
-  border-top: 1px solid #eee;
 }
 
 .custom.card-body {
@@ -468,4 +456,8 @@ p.confirmation-content {
 .confirmation-buttons .btn {
   padding: 0px .5rem;
   border-radius: 0;
+}
+
+.hide{
+  display:none!important;
 }
