@@ -1,50 +1,50 @@
 <header th:replace="fragments/includes/tophalf.html"></header>
 <div id="main-content" class="col">
 
-<!-- Main Content --------------------------------------->
+  <!-- Main Content --------------------------------------->
 
-<h3>pet table</h3>
-<div class="table-responsive-xl">
-  <table class="table table-sm table-borderless">
-    <thead>
-      <tr class="bg-white">
-        <th class="action"></th>
-        <th>id</th>
-        <th>name</th>
-        <th>gender</th>
-        <th>altered</th>
-        <th>owner</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr data-th-each="pet : ${pets}">
-        <td>
+  <h3>pet table</h3>
+  <div class="table-responsive-xl">
+    <table class="table table-sm">
+      <thead>
+        <tr style="background:rgba(255,255,255,.25)">
+          <th class="action"></th>
+          <th>id</th>
+          <th>name</th>
+          <th>gender</th>
+          <th>altered</th>
+          <th>owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-th-each="pet : ${pets}">
+          <td>
             <div class="btn-group dropright">
-                <button type="button" class="shadow-none btn btn-sm badge dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class=""><i class="fas fa-edit"></i></span>
-                  </button>
-                <div class="dropdown-menu p-2">
-                    <h6 class="dropdown-header p-1">Pet</h6>
-                    <a data-th-href="@{/pets/{id}(id=${pet.id})}" class="dropdown-item text-primary small">Edit</a>
-                    <a data-th-href="@{/pets/{id}/delete(id=${pet.id})}" class="dropdown-item text-primary small" data-toggle="confirmation">Delete</a>
-                    <hr class="m-0 mt-1">
-                    <h6 class="dropdown-header p-1">Client</h6>
-                    <a data-th-href="@{/clients/{id}(id=${pet.clientId})}" class="dropdown-item text-primary small">Edit</i></a>
-                </div>
+              <button type="button" class="shadow-none btn btn-sm badge dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class=""><i class="fas fa-edit"></i></span>
+              </button>
+              <div class="dropdown-menu p-2">
+                <h6 class="dropdown-header p-1">Pet</h6>
+                <a data-th-href="@{/pets/{id}(id=${pet.id})}" class="dropdown-item text-primary small">Edit</a>
+                <a data-th-href="@{/pets/{id}/delete(id=${pet.id})}" class="dropdown-item text-primary small" data-toggle="confirmation">Delete</a>
+                <hr class="m-0 mt-1">
+                <h6 class="dropdown-header p-1">Client</h6>
+                <a data-th-href="@{/clients/{id}(id=${pet.clientId})}" class="dropdown-item text-primary small">Edit</i></a>
               </div>
-        </td>
-        <td data-th-text="${pet.id}" class="text-capitalize">...</td>
-        <td data-th-text="${pet.name}" class="text-capitalize">...</td>
-        <td data-th-text="${pet.gender}" class="text-uppercase">...</td>
-        <td data-th-text="${pet.altered}" class="text-uppercase">...</td>
-        <td data-th-text="${pet.client.name}" class="text-capitalize">...</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-            
+            </div>
+          </td>
+          <td data-th-text="${pet.id}" class="text-capitalize">...</td>
+          <td data-th-text="${pet.name}" class="text-capitalize">...</td>
+          <td data-th-text="${pet.gender}" class="text-uppercase">...</td>
+          <td data-th-text="${pet.altered}" class="text-uppercase">...</td>
+          <td data-th-text="${pet.client.name}" class="text-capitalize">...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<!-- end ------------------------------------------------->        
+
+  <!-- end ------------------------------------------------->
 </div>
 
 <footer th:replace="fragments/includes/bottomhalf.html"></footer>

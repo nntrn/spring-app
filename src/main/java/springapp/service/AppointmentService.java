@@ -31,6 +31,9 @@ public class AppointmentService {
 		return appointmentDao.list(type, id);
 	}
 
+	public List<Appointment> getAppointments(Integer id){
+		return appointmentDao.list("pet", id);
+	}
 	public void deleteAppointment(Integer id) {
 		appointmentDao.delete(id);
 	}

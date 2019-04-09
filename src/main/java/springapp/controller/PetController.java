@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import springapp.command.PetCommand;
+import springapp.domain.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Pet;
+import springapp.service.AppointmentService;
 import springapp.service.ClientService;
 import springapp.service.PetService;
 
@@ -44,6 +46,9 @@ public class PetController {
     // injecting in a ClientService instance
 	@Autowired
 	ClientService clientService;
+
+	@Autowired
+	AppointmentService appointmentService;
 
     /**
      * Handle listing all the pets
@@ -84,7 +89,6 @@ public class PetController {
 		model.addAttribute("fromClientPage", clientId != null);
         model.addAttribute("saved", saved);
 
-
         // if the id passed in is 'new' and no clientId is passed in, then we have a problem ....
 		if(id.equals("new") && clientId == null) {
 			throw new IllegalArgumentException("Cannot add a new pet without a clientid");
@@ -108,23 +112,15 @@ public class PetController {
 			 model.addAttribute("saved2", saved);
 		}
 
-		// the pet command should always have the clientid (unless the Pet instance from the service is missing an id)
-        // which we should probably handle....
-
-        // we get the client based on the client id in the command
 		Client client = clientService.getClient(petCommand.getClientId());
-
-		// we set the client instance in the pet command,
-        // when we got the command earlier, we only had the clientid, but now we should have the full client object.
-        // we do this because we want to display the client info (name) not just the id.
+		List<Appointment> appointmentsByPet = appointmentService.getAppointments(petCommand.getId());
+		petCommand.setAppointments(appointmentsByPet);	
 		petCommand.setClient(client);	
 	
-		
 		// we add the command pet command instance to the mode (which has the client instance as well as the pet info)
 		model.addAttribute("command", petCommand);
 		return "pets/editPet";
 	}
-
 
     /**
      * Save the pet info, or create a new pet based on the command
@@ -133,7 +129,6 @@ public class PetController {
      * @param fromClientPage a flag so we know if this originated from the client page, or the pet list page
      * @return the view template to use once the save is successful
      */
-
 	@PreAuthorize("hasAuthority('SAVE_PET')")
 	@PostMapping
 	 public String savePet(PetCommand command, RedirectAttributes redirectAttributes, boolean fromClientPage) {
