@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +28,7 @@ import springapp.domain.Pet;
 @Repository
 @Scope("singleton")
 public class AppointmentDao {
-	//private Logger logger = LoggerFactory.getLogger(AppointmentDao.class);
-	
-	@Autowired 
-	ClientDao clientDao;
-	
+
 	@Autowired 
 	PetDao petDao;
 	
@@ -42,12 +37,15 @@ public class AppointmentDao {
 		@Override
 		public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
-			Appointment appointment = new Appointment(rs.getInt("id"), rs.getInt("pet_id"), rs.getInt("appt_time"), rs.getDate("appt_date"), rs.getString("appt_type"));
+			Appointment appointment = new Appointment(rs.getInt("id"), rs.getInt("pet_id"), rs.getInt("time"), rs.getString("date"), rs.getString("reason"));
 			Pet pet = petDao.get(rs.getInt("pet_id"));
-			Client client = pet.getClient();
+			//Client client = pet.getClient();
 
-			appointment.setClient(client);
+			appointment.setVisitType(rs.getString("visit_type"));
+			appointment.setCloseType(rs.getString("close_type"));
+
 			appointment.setPet(pet);
+			appointment.setClient(pet.getClient());
 			
 			return appointment;
 		}
@@ -57,15 +55,34 @@ public class AppointmentDao {
     JdbcTemplate jdbcTemplate;
     	
 	public List<Appointment> list(){
-		List<Appointment> queryResult = jdbcTemplate.query("SELECT id, pet_id, appt_time, appt_date, appt_type FROM appointments",
+		List<Appointment> queryResult = jdbcTemplate.query("SELECT * FROM appointments", simpleApptMapper);
+		
+		return queryResult;
+	}
+
+	public List<Appointment> listForClient(int clientId){
+		List<Appointment> queryResult = jdbcTemplate.query(
+				"SELECT * FROM appointments, pets where pets.id=appointments.pet_id and client_id = ? ORDER BY pet_id, date",
+				new Object[] {clientId},
 				simpleApptMapper);
 		
 		return queryResult;
 	}
 	
+	public List<Appointment> list(String type, int id){
+		List<Appointment> queryResult = jdbcTemplate.query("SELECT * FROM appointments where pet_id =" +id, simpleApptMapper);
+		if(type=="client"){
+			queryResult = jdbcTemplate.query("SELECT * FROM appointments, pets where pets.id=appointments.pet_id and client_id =" +id, simpleApptMapper);
+		}
+		
+		return queryResult;
+
+	}
+
 	public Appointment get(int id) {
+
 		List<Appointment> queryResult = jdbcTemplate.query(
-				"SELECT id, client_id, pet_id, appt_time, appt_date, appt_type FROM appointments WHERE id = ? LIMIT 1", 
+				"SELECT * FROM appointments WHERE id = ? LIMIT 1", 
 				new Object[] {id},
 				simpleApptMapper);
 		
@@ -85,12 +102,14 @@ public class AppointmentDao {
 			
 				@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments (pet_id, appt_time, appt_date, appt_type) VALUES (?, ?, ?, ?)");
+					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments (pet_id, time, date, reason, visit_type, close_type) VALUES (?, ?, ?, ?,?,?)");
 
-					statement.setInt(2, appointment.getPetId());
-					statement.setInt(3, appointment.getApptTime());
-					statement.setDate(4, appointment.getApptDate());
-					statement.setString(5, appointment.getApptType());
+					statement.setInt(1, appointment.getPetId());
+					statement.setInt(2, appointment.getApptTime());
+					statement.setString(3, appointment.getApptDate());
+					statement.setString(4, appointment.getApptReason());
+					statement.setString(5, appointment.getVisitType());
+					statement.setString(6, appointment.getCloseType());
 					return statement;
 				}
 			}, holder);
@@ -98,17 +117,20 @@ public class AppointmentDao {
 			id = holder.getKey().intValue();
 			
 		} else {
-			jdbcTemplate.update("UPDATE appointments SET pet_id = ? , appt_time = ?, appt_date = ?, appt_type = ? WHERE id = ?",
-					new Object[] {appointment.getPetId(), appointment.getApptTime(),  appointment.getApptDate(),  appointment.getApptType(), id});
+			jdbcTemplate.update("UPDATE appointments SET pet_id = ? , time = ?, date = ?, reason = ?, visit_type = ?, close_type = ? WHERE id = ?",
+					new Object[] {appointment.getPetId(), appointment.getApptTime(),  appointment.getApptDate(),  appointment.getApptReason(), appointment.getVisitType(), appointment.getCloseType(), id});
 		}
 		
 		return get(id);
 	}
 	
 	public void delete(int id) {
-		
-		jdbcTemplate.update("DELETE FROM appointments WHERE id = ?",
+
+				jdbcTemplate.update("UPDATE appointments SET close_type = 'Deleted' WHERE id = ?",
 				new Object[] {id});
+		
+		// jdbcTemplate.update("DELETE FROM appointments WHERE id = ?",
+		// 		new Object[] {id});
 		
 	}
 	
