@@ -54,14 +54,7 @@ public class PetDao {
 	
     @Autowired
     JdbcTemplate jdbcTemplate;
-	public List<Pet> list2(){
-		// TODO: edit this SQL statement
-		List<Pet> queryResult = jdbcTemplate.query(
-				"SELECT id, name, gender, altered, client_id FROM clients, pets",
-				simplePetMapper);
-		
-		return queryResult;
-	}
+
     
 	public List<Pet> list(){
 		List<Pet> queryResult = jdbcTemplate.query(
@@ -70,10 +63,18 @@ public class PetDao {
 		
 		return queryResult;
 	}
+
+	public List<Pet> listForClient(){
+		List<Pet> queryResult = jdbcTemplate.query(
+				"SELECT pets.id, pets.name, pets.gender, pets.altered, pets.client_id from clients, pets WHERE clients.id = pets.client_id",
+				simplePetMapper);
+		
+		return queryResult;
+	}
 	
 	public List<Pet> listForClient(int clientId){
 		List<Pet> queryResult = jdbcTemplate.query(
-				"SELECT id, name, gender, altered, client_id from pets WHERE client_id = ?",
+				"SELECT pets.id, pets.name, pets.gender, pets.altered, pets.client_id from clients, pets WHERE clients.id = pets.client_id AND pets.client_id = ?",
 				new Object[] {clientId},
 				simplePetMapper);
 		
