@@ -1,10 +1,14 @@
+:root{
+  --background: #f2f3f5;
+}
 .message-box-info {
   color: green;
   padding: 1rem 0;
   padding-top: 0;
 }
 
-.was-validated .form-control:invalid, .was-validated .form-control:valid {
+.was-validated .form-control:invalid,
+.was-validated .form-control:valid {
   background-image: unset;
   border-color: rgba(0, 0, 0, .125);
 }
@@ -13,7 +17,8 @@
   border-color: rgba(0, 0, 0, .125)
 }
 
-.form-control.is-invalid, .was-validated .form-control:invalid {
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
   padding-right: 0;
   background-image: unset;
 }
@@ -29,7 +34,8 @@
   color: red;
 }
 
-.form-control.is-valid, .was-validated .form-control:valid {
+.form-control.is-valid,
+.was-validated .form-control:valid {
   padding-right: 0;
 }
 
@@ -45,7 +51,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
 
-.table, table {
+.table,
+table {
   font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   margin: 0;
   font-size: 14px;
@@ -53,17 +60,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.table-sm td, .table-sm th {
+.table-sm td,
+.table-sm th {
   padding: .1rem .3rem;
   color: #3f3f44;
 }
 
-.shadow {
-  box-shadow: 0 .2rem .2rem rgba(0, 0, 0, .0) !important;
-}
-
 #wrapper #content-wrapper {
-  background-color: #fff;
+  /*   background-color: rgba(0,0,0,.055);
+    background-color: rgba(255,255,255,.75); */
   overflow: hidden;
   height: 100vh;
 }
@@ -74,7 +79,10 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f2f3f5;
+  background-color: var(--background);
+}
+.bg-background{
+  background-color: var(--background);
 }
 
 #content {
@@ -192,7 +200,8 @@ form.custom-labels:hover label {
   line-height: 90%;
 }
 
-.dropdown-item:focus, .dropdown-item:hover {
+.dropdown-item:focus,
+.dropdown-item:hover {
   color: #16181b;
   text-decoration: none;
   background-color: #f8f9fa
@@ -207,55 +216,30 @@ footer {
 }
 
 /* sidebar   ******************************************/
-.site-brand {
-  padding: 4px;
-  background-color: transparent;
-  border-radius: 50%;
-  align-items: center;
-  color: #2196f3;
-  text-transform: uppercase;
-  font-weight: normal;
-  margin: 0 .5rem;
-  text-decoration: none !important;
-  overflow: hidden;
-}
-
-.site-brand-icon i {
-  color: #79c0f7;
-  padding: 3px;
-  align-items: center;
-  transform: rotate(45deg);
-}
-
 .site-brand-icon {
-  color: #79c0f7;
-  opacity: .75;
-  padding: 2px;
-  background-color: #2196f3;
-  transition: box-shadow 500ms;
-  align-items: center;
-  box-shadow: inset -3px -3px 0 0px #0b6fbf;
-  transform: rotate(-45deg);
-}
-
-.site-brand-icon:hover {
-  opacity: 1;
+  padding: .1rem;
+  border-radius: 50%
 }
 
 .site-brand-text {
-  display: block;
+  display: flex;
   color: #2196f3;
   font-weight: bold;
-  margin: 0 .65rem;
+  margin: 0 .4rem;
   text-align: center;
-  font-size: 1.25rem;
+  align-items: center;
+  line-height: 100%;
+  text-transform: uppercase;
 }
 
-.sidebar .sidebar-heading {
-  text-align: center;
-  padding: 0 1rem;
-  font-weight: 800;
-  font-size: .65rem;
+
+.site-brand:hover {
+  text-decoration: none !important;
+}
+
+.site-brand {
+  display: flex;
+  flex-direction: row;
 }
 
 .sidebar a {
@@ -269,7 +253,7 @@ footer {
 .sidebar {
   background: #f7f8fb;
   border-right: 1px solid #eee;
-  background: white;
+  background: transparent;
 }
 
 .sidebar .nav-item .nav-link {
@@ -284,7 +268,8 @@ footer {
   color: rgba(0, 0, 0, .55)
 }
 
-.sidebar .nav-item .collapse .collapse-inner, .sidebar .nav-item .collapsing .collapse-inner {
+.sidebar .nav-item .collapse .collapse-inner,
+.sidebar .nav-item .collapsing .collapse-inner {
   min-width: unset;
   max-width: 10rem;
 }
@@ -438,9 +423,8 @@ footer {
 }
 
 .popover-body {
-
   padding: .41rem;
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .bs-popover-auto[x-placement^=top]>.arrow::after,.bs-popover-top>.arrow::after {
@@ -459,5 +443,5 @@ p.confirmation-content {
 }
 
 .hide{
-  display:none!important;
+  display:none
 }
