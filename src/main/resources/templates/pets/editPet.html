@@ -1,7 +1,7 @@
 <header th:replace="fragments/includes/tophalf.html"></header>
 <div id="main-content" class="col">
 
-<!-- Main Content --------------------------------------->
+  <!-- Main Content --------------------------------------->
 
   <h3>edit pet</h3>
   <div class="pad">
@@ -53,7 +53,40 @@
 
   <a class="pure-button" data-toggle="confirmation" data-th-href="@{'/pets/'+${command?.id}+'/delete'}">Delete</a>
 
-<!-- end ------------------------------------------------->
+
+
+  <div class="col-12 col-md-6 mb-3" id="appointments">
+    <table class="table table-sm">
+      <thead>
+        <tr style="background:rgba(255,255,255,.25)">
+            <th>id</th>
+            <th colspan="2">pet</th>
+            <th>date</th>
+            <th>time</th>
+            <th>type</th>
+          </tr>
+          </thead>
+          <tbody>
+              <tr data-th-each="appt, rowStat : ${command.appointments}">
+                  <td data-th-text="${appt.id}">...</td>
+                  <td data-th-text="${appt.petId}">...</td>
+                  <td data-th-text="${appt.pet.name}">...</td>
+                  <!-- <td data-th-text="${#dates.year(appt.apptDate)}">...</td> -->
+                  <td data-th-text="${appt.apptDate}">...</td>
+                  <td data-th-text="${appt.apptTime}">...</td>
+                  <td data-th-text="${appt.apptReason}">...</td>
+                  <td data-th-text="${appt.visitType}">...</td>
+                  <td data-th-text="${appt.closeType}">...</td>
+                </tr>
+          </tbody>
+
+    </table>
+
+
+
+  </div>
+
+  <!-- end ------------------------------------------------->
 </div>
 
 <footer th:replace="fragments/includes/bottomhalf.html"></footer>

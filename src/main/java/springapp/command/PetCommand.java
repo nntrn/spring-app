@@ -5,6 +5,8 @@ import springapp.domain.Client;
 import springapp.domain.Gender;
 import springapp.domain.Pet;
 
+
+import java.util.List;
 /**
  * The command object is use when passing data back and forth between the client and server
  */
@@ -16,7 +18,7 @@ public class PetCommand {
 	private Gender gender;
 	private Integer clientId;
 	private Client client;
-	private Appointment appointment;
+	private List<Appointment> appointments;
 	/**
 	 * Initialise an empty pet command with the client id set
 	 * @param clientId the client id
@@ -134,12 +136,11 @@ public class PetCommand {
 		this.client = client;
 	}
 	
-	
-	public Appointment getAppointment() {
-		return appointment;
+	public List<Appointment> getAppointments() {
+		return appointments;
 	}
-	public void setAppointment(Appointment appointment) {
-		this.appointment = appointment;
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 	
 	

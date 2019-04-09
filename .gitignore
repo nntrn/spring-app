@@ -19,3 +19,6 @@ target/
 
 .hidden/
 references/
+help/
+bin/
+.vscode/
