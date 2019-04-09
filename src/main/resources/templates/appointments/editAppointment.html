@@ -3,38 +3,34 @@
 
 <!-- Main Content --------------------------------------->
 
-          <h3>edit appointment</h3>
+  <h3>edit pet</h3>
+  <div class="pad">
+    <form class="pure-form pure-form-aligned" id="theForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
+      <input type="hidden" data-th-field="*{id}" />
+      <!-- <input type="hidden" id="fromClientPage" name="fromClientPage" data-th-value="${fromClientPage}" /> -->
 
-            <div id="example-basic">
-                <h3>Keyboard</h3>
-                <section>
-                    <p>Try the keyboard navigation by clicking arrow left or right!</p>
-                </section>
-                <h3>Effects</h3>
-                <section>
-                    <p>Wonderful transition effects.</p>
-                </section>
-                <h3>Pager</h3>
-                <section>
-                    <p>The next and previous buttons help you to navigate through your content.</p>
-                </section>
-            </div>
-      
+      <div data-th-if="${saved}" class="message-box-info">
+        Saved
+      </div>
 
-<!-- end ------------------------------------------------->        
+      <div class="pure-control-group">
+        <label>Id</label>
+        <span data-th-if="${command.id == null}"> New </span>
+        <span data-th-if="${command.id != null}" data-th-text="*{id}"> New </span>
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- <button type="submit" form="theForm" class="pure-button" value="Save">Save</button>
+  <a class="pure-button" data-th-if="${fromClientPage}" data-th-href="@{/clients/{c}(c=${command.client.id})}">Cancel</a>
+  <a class="pure-button" data-th-if="${!fromClientPage}" data-th-href="@{/pets}">Cancel</a>
+
+  <a class="pure-button" data-toggle="confirmation" data-th-href="@{'/pets/'+${command?.id}+'/delete'}">Delete</a> -->
+
+<!-- end ------------------------------------------------->
 </div>
 
 <footer th:replace="fragments/includes/bottomhalf.html"></footer>
 <!-- add additional scripts below -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.js"></script>
-
-<script>
-  $("#example-basic").steps({
-    headerTag: "h3",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    autoFocus: true
-});
-</script>
-

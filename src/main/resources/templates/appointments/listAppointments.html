@@ -4,27 +4,38 @@
   <!-- Main Content --------------------------------------->
 
   <h3>appointments table</h3>
+  <span th:text="${#dates.year(#dates.createToday())}"></span>
+  <p th:text="${param.q}">Test</p>
+
   <div class="table-responsive" data-th-if="${appointments.size() > 0}">
+
     <table class="table table-sm table-bordered">
+ 
       <thead>
         <tr>
           <th>id</th>
-          <th>pet</th>
+          <th colspan="2">pet</th>
           <th>date</th>
           <th>time</th>
           <th>type</th>
         </tr>
       </thead>
       <tbody>
-        <tr data-th-each="appointment : ${appointments}">
+        <tr data-th-each="appointment,iterStat : ${appointments}">
           <td data-th-text="${appointment.id}">...</td>
+          <td data-th-text="${appointment.petId}">...</td>
           <td data-th-text="${appointment.pet.name}">...</td>
+          <!-- <td data-th-text="${#dates.format(appointment.apptDate, 'MMM dd, yyyy')} ">...</td> -->
           <td data-th-text="${appointment.apptDate}">...</td>
           <td data-th-text="${appointment.apptTime}">...</td>
-          <td data-th-text="${appointment.apptType}">...</td>
+          <td data-th-text="${appointment.apptReason}">...</td>
+          <td data-th-text="${appointment.visitType}">...</td>
+          <td data-th-text="${appointment.closeType}">...</td>
         </tr>
       </tbody>
     </table>
+
+
   </div>
 
   <!-- Button trigger modal -->

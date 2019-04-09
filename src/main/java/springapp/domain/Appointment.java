@@ -6,19 +6,21 @@ import java.time.LocalDate;
 public class Appointment {
 	private final Integer id;
 	private final Integer pet_id;
-	private final Integer appt_time;
-	private final Date appt_date;
-	private final String appt_type;
+	private final Integer time;
+	private final String date;
+	private final String reason;
+	private String visit_type;
+	private String close_type;
 	
-	private Client client;
 	private Pet pet;
+	private Client client;
 	
-	public Appointment(Integer id, Integer pet_id, Integer appt_time, Date date, String appt_type) {
+	public Appointment(Integer id, Integer pet_id, Integer time, String date, String reason) {
 		this.id = id;
 		this.pet_id = pet_id;
-		this.appt_time = appt_time;
-		this.appt_date = date;
-		this.appt_type = appt_type;
+		this.time = time;
+		this.date = date;
+		this.reason = reason;
 	}
 
 	public Integer getId() {
@@ -30,22 +32,29 @@ public class Appointment {
 	}
 
 	public Integer getApptTime() {
-		return appt_time;
+		return time;
 	}
 
-	public Date getApptDate() {
-		return appt_date;
+	public String getApptDate() {
+		return date;
 	}
 
-	public String getApptType() {
-		return appt_type;
+	public String getApptReason() {
+		return reason;
 	}
-	
-	public Client getClient() {
-		return client;
+
+	public String getVisitType() {
+		return visit_type;
 	}
-	public void setClient(Client client) {
-		this.client = client;
+	public String getCloseType() {
+		return close_type;
+	}
+
+	public void setVisitType(String visit_type) {
+		this.visit_type = visit_type;
+	}
+	public void setCloseType(String close_type){
+		this.close_type = close_type;
 	}
 	
 	public Pet getPet() {
@@ -53,5 +62,12 @@ public class Appointment {
 	}
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+		
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }

@@ -19,9 +19,6 @@ public class AppointmentService {
 
 	@Autowired 
 	AppointmentDao appointmentDao;
-	
-	@Autowired 
-	ClientDao clientDao;
 
 	@Autowired 
 	PetDao petDao;
@@ -30,8 +27,12 @@ public class AppointmentService {
 		return appointmentDao.list();
 	}
 	
-	public void deleteAppointment(String id) {
-		appointmentDao.delete(Integer.parseInt(id));
+	public List<Appointment> getAppointments(String type, Integer id){
+		return appointmentDao.list(type, id);
+	}
+
+	public void deleteAppointment(Integer id) {
+		appointmentDao.delete(id);
 	}
 
 	public Appointment getAppointment(String id) {
@@ -46,12 +47,13 @@ public class AppointmentService {
 	public Appointment saveAppointment(AppointmentCommand command) {
 		Appointment newAppt = new Appointment(
 				command.getId(), 
-				command.getClientId(), 
 				command.getPetId(), 
 				command.getApptTime(),
 				command.getApptDate(),
-				command.getApptType()
+				command.getApptReason()
 				);
+		newAppt.setVisitType(command.getVisitType());
+		newAppt.setCloseType(command.getCloseType());
 		return appointmentDao.save(newAppt);
 	}
 

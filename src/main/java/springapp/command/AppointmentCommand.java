@@ -15,9 +15,11 @@ public class AppointmentCommand {
 
 	private Integer id;
 	private Integer pet_id;
-	private Integer appt_time;
-	private Date appt_date;
-	private String appt_type;
+	private Integer time;
+	private String date;
+	private String reason;
+	private String visit_type;
+	private String close_type;
 	private Pet pet;
 	private Client client;
 
@@ -31,9 +33,9 @@ public class AppointmentCommand {
 		if (appointment != null) {
 			id = appointment.getId();
 			this.pet_id = appointment.getPetId();
-			this.appt_date = appointment.getApptDate();
-			this.appt_time = appointment.getApptTime();
-			this.appt_type = appointment.getApptType();
+			this.date = appointment.getApptDate();
+			this.time = appointment.getApptTime();
+			this.reason = appointment.getApptReason();
 		}
 	}
 	
@@ -48,15 +50,15 @@ public class AppointmentCommand {
 	}
 
 	public Integer getApptTime() {
-		return appt_time;
+		return time;
 	}
 
-	public Date getApptDate() {
-		return appt_date;
+	public String getApptDate() {
+		return date;
 	}
 
-	public String getApptType() {
-		return appt_type;
+	public String getApptReason() {
+		return reason;
 	}
 
 	public void setId(Integer id) {
@@ -67,17 +69,32 @@ public class AppointmentCommand {
 		this.pet_id = pet_id;
 	}
 
-	public void setApptTime(Integer appt_time) {
-		this.appt_time = appt_time;
+	public void setApptTime(Integer time) {
+		this.time = time;
 	}
 
-	public void setApptDate(Date appt_date) {
-		this.appt_date = appt_date;
+	public void setApptDate(String date) {
+		this.date = date;
 	}
 
-	public void setApptType(String appt_type) {
-		this.appt_type = appt_type;
+	public void setApptReason(String reason) {
+		this.reason = reason;
 	}
+
+	public String getVisitType() {
+		return visit_type;
+	}
+	public void setVisitType(String visit_type) {
+		this.visit_type = visit_type;
+	}
+
+	public String getCloseType() {
+		return close_type;
+	}
+	public void setCloseType(String close_type){
+		this.close_type = close_type;
+	}
+	
 	
 	public Pet getPet() {
 		return pet;
@@ -86,15 +103,13 @@ public class AppointmentCommand {
 	public void setPet(Pet pet) {
 		this.pet = pet;
 	}
-	
+
 	public Client getClient() {
 		return client;
 	}
-	
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
 
-	
+
 }

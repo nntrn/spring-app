@@ -30,14 +30,13 @@ import springapp.service.PetService;
 @RequestMapping("/appointments") // notice that this path is set at the class level.
 public class AppointmentController {
 
-
 	@Autowired
 	AppointmentService appointmentService;
-	
-    // injecting in a PetService instance
+
+	// injecting in a PetService instance
 	@Autowired
 	PetService petService;
-	
+
 	@Autowired
 	ClientService clientService;
 
@@ -48,85 +47,81 @@ public class AppointmentController {
 		model.addAttribute("appointments", appointments);
 		return "appointments/listAppointments";
 	}
-	
+
 	@PreAuthorize("hasAuthority('GET_APPOINTMENT')")
 	@GetMapping("/{id}")
-	public String getAppointment(@PathVariable("id") String id,
-						 Model model,
-						 @RequestParam(name="pet_id", required=false) Integer pet_id,
-						 @RequestParam(name="saved", required = false) boolean saved) {
+	public String getAppointment(@PathVariable("id") String id, Model model,
+			@RequestParam(name = "petId", required = false) Integer petId,
+			@RequestParam(name = "clientId", required = false) Integer clientId,
+			@RequestParam(name = "saved", required = false) boolean saved) {
 
-		model.addAttribute("fromPetPage", pet_id != null);
-        model.addAttribute("saved", saved);
+		model.addAttribute("fromClientPage", clientId != null);
+		model.addAttribute("saved", saved);
 
 		AppointmentCommand appointmentCommand;
 
-		if(id.equals("new")) {
-            // if the id is 'new' then we create a pet command that only has the client id filled in
+		if (id.equals("new")) {
 			appointmentCommand = new AppointmentCommand();
-			
-		} else {
-			
-            Appointment appointment = appointmentService.getAppointment(id);
-     
-            appointmentCommand = new AppointmentCommand(appointment);
-            appointmentCommand.setPetId(appointmentCommand.getPetId());
-            appointmentCommand.setApptTime(appointmentCommand.getApptTime());
-            appointmentCommand.setApptDate(appointmentCommand.getApptDate());
-            appointmentCommand.setApptType(appointmentCommand.getApptType());
-            
-    		Pet pet = petService.getPet(pet_id.toString());
-    		Client client = pet.getClient();
-    		appointmentCommand.setPet(pet);
-    		appointmentCommand.setClient(client);
-    		
-    		model.addAttribute("saved2", saved);
+		} 
+		else {
+			Appointment appointment = appointmentService.getAppointment(id);
+
+			appointmentCommand = new AppointmentCommand(appointment);
+			appointmentCommand.setPetId(appointmentCommand.getPetId());
+			appointmentCommand.setApptTime(appointmentCommand.getApptTime());
+			appointmentCommand.setApptDate(appointmentCommand.getApptDate());
+			appointmentCommand.setApptReason(appointmentCommand.getApptReason());
+			appointmentCommand.setVisitType(appointmentCommand.getVisitType());
+			appointmentCommand.setCloseType(appointmentCommand.getCloseType());
+
+			model.addAttribute("saved2", saved);
 		}
-		
-		// we add the command pet command instance to the mode (which has the client instance as well as the pet info)
+
+		Pet pet = petService.getPet(appointmentCommand.getPetId().toString());
+		// Client client = pet.getClient();
+		appointmentCommand.setPet(pet);
+		appointmentCommand.setClient(pet.getClient());
+
 		model.addAttribute("command", appointmentCommand);
+		// model.addAttribute("pets", appointmentService.getAppointments("pets",
+		// pet_id));
+
 		return "appointments/editAppointment";
 	}
-	
-	
+
 	@PreAuthorize("hasAuthority('SAVE_APPOINTMENT')")
 	@PostMapping
-	 public String saveAppointment(AppointmentCommand command, 
-			 RedirectAttributes redirectAttributes, boolean fromPetPage) {
+	public String saveAppointment(
+		AppointmentCommand command, 
+		RedirectAttributes redirectAttributes,
+		boolean fromClientPage) {
+			
+		Appointment appointment = appointmentService.saveAppointment(command);
 
-	        // we pass in the pet command to the service to update or create a new pet
-	        Appointment appointment = appointmentService.saveAppointment(command);
+		redirectAttributes.addAttribute("saved", true);
+		if (fromClientPage) {
+			redirectAttributes.addAttribute("clientId", appointment.getClient().getId());
+		}
+		return "redirect:/appointments/" + appointment.getId();
 
-	        redirectAttributes.addAttribute("saved", true);
-	        if(fromPetPage) {
-	            redirectAttributes.addAttribute("pet_id", appointment.getPetId());
-	        }
-	        return "redirect:/appointments/";
+	}
 
-	    }
-	
 	@PreAuthorize("hasAuthority('DELETE_APPOINTMENT')")
 	@GetMapping("/{id}/delete")
 	public String deleteAppointment(@PathVariable("id") String id,
-							@RequestParam(name="client_id", required=false) Integer client_id,
-							RedirectAttributes redirectAttributes) {
+			@RequestParam(name = "clientId", required = false) Integer clientId, RedirectAttributes redirectAttributes) {
 
-		//int cid = petService.getPet(id).getClientId();
-	    // we pass the pet id to the service so it can delete the pet
-		appointmentService.deleteAppointment(id);
+		int cid = appointmentService.getAppointment(id).getClient().getId();
 
-		// a flag so the page we redirect to can tell that the delete was successful
+		appointmentService.deleteAppointment(Integer.parseInt(id));
 		redirectAttributes.addFlashAttribute("deleted", true);
 
-//		if(clientId != null){
-//            // if a client id was passed in, then we redirect to the client edit page
-//			return "redirect:/clients/"+clientId;
-//		}
-		
-		// otherwise we redirect to the petslisting page
+		if (clientId != null) {
+			return "redirect:/clients/" + cid;
+		}
+
 		return "redirect:/appointments/";
 
 	}
-	
 
 }
