@@ -4,9 +4,11 @@
           <!-- Sidebar - Brand -->
           <a class="site-brand d-flex" href="#" data-th-href="@{'/'}">
             <div class="site-brand-icon">
-              <i class="fa fa-paw"></i>
+              <!-- <i class="fa fa-paw"></i> -->
+              <img src="/images/icon.svg" alt="Pet Clinic">
             </div>
-            <div class="site-brand-text">Pet App</div>
+            <div class="site-brand-text" th:include="fragments/attributes.html :: siteTitle">...</div>
+            <!-- <div class="site-brand-text">Pet App</div> -->
           </a>
 
           <!-- Sidebar Toggle (Topbar) -->
