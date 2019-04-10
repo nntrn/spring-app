@@ -9,7 +9,7 @@
 
   <div class="table-responsive" data-th-if="${appointments.size() > 0}">
 
-    <table class="table table-sm table-bordered">
+    <table class="table table-sm table-bordered flex-table">
  
       <thead>
         <tr>
@@ -22,13 +22,13 @@
       </thead>
       <tbody>
         <tr data-th-each="appointment,iterStat : ${appointments}">
-          <td data-th-text="${appointment.id}">...</td>
-          <td data-th-text="${appointment.petId}">...</td>
-          <td data-th-text="${appointment.pet.name}">...</td>
-          <td data-th-text="${appointment.apptDate}">...</td>
-          <td data-th-text="${appointment.apptTime}">...</td>
-          <td data-th-text="${appointment.apptReason}">...</td>
-          <td data-th-text="${appointment.visitType}">...</td>
+          <td data-th-text="${appointment.id}" class="bg-white text-black-50" title="appointment id">...</td>
+          <td data-th-text="${appointment.petId}" class="bg-primary text-white-50" title="pet id">...</td>
+          <td data-th-text="${appointment.pet.name}" class="bg-primary text-white-50" title="pet name">...</td>
+          <td data-th-text="${appointment.apptDate}" title="date">...</td>
+          <td data-th-text="${appointment.apptTime}" title="time">...</td>
+          <td data-th-text="${appointment.apptReason}" title="reason for visit">...</td>
+          <td data-th-text="${appointment.visitType}" title="visit type">...</td>
           <td data-th-text="${appointment.closeType}">...</td>
         </tr>
       </tbody>

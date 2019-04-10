@@ -14,18 +14,17 @@
     <input type="hidden" data-th-field="*{id}" />
     <div class="form-row">
 
-      <div class="form-group col-md-6 was-validated">
+      <div class="form-group col-6 col-md-4 was-validated">
         <label class="small mb-0" for="name">Name</label>
         <input id="name" name="name" placeholder="name" type="text" class="form-control text-capitalize" data-th-field="*{name}" required>
       </div>
 
-      <div class="form-group col-md-6">
+      <div class="form-group col-6 col-md-4">
         <label class="small mb-0" for="phone">Phone</label>
         <input name="phone" placeholder="Phone" type="text" class="form-control js-format-phone" data-th-field="*{phoneNumber}" required>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col">
+
+      <div class="form-group col-12 col-md-4">
         <label class="small mb-0" for="address">Address</label>
         <input id="address" name="address" placeholder="Street" type="text" class="form-control text-capitalize" data-th-field="*{address}">
       </div>
@@ -37,7 +36,7 @@
       <button type="submit" form="theForm" class="btn btn-primary btn-sm custom-buttons" value="Save">Save</button>
       <a class="btn btn-primary btn-sm custom-buttons" data-th-href="@{/clients}">Cancel</a>
       <a class="btn btn-primary btn-sm custom-buttons js-confirm-delete" data-toggle="confirmation" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
-      <a class="btn btn-outline-secondary btn-sm custom-buttons" data-th-if="${command.id != null}" data-toggle="collapse" href="#collapseAddNewPet" role="button" aria-expanded="false" aria-controls="collapseAddNewPet">
+      <a class="btn btn-outline-primary btn-sm custom-buttons" data-th-if="${command.id != null}" data-toggle="collapse" href="#collapseAddNewPet" role="button" aria-expanded="false" aria-controls="collapseAddNewPet">
         add pet
       </a>
 
@@ -55,7 +54,7 @@
     </div>
 
     <div class="row">
-      <div class="col-12 col-md-6 mb-3">
+      <div class="col-12 col-md-4 mb-3">
         <h5 data-th-if="${pets.size() > 0}"><span data-th-text="${pets.size()}">...</span> pet(s):</h5>
 
         <!-- ADD NEW PET --------->
@@ -106,7 +105,7 @@
 
                 <div class="form-row p-1 mb-0 was-validated">
 
-                  <div class="form-group col-5 mb-0">
+                  <div class="form-group col mb-0">
                     <label class="small mb-0">name</label>
                     <input type="text" name="name" data-th-value="${pet.name}" class="form-control form-control-sm">
                   </div>
@@ -121,7 +120,7 @@
       
                   </div>
 
-                  <div class="form-group col mb-0">
+                  <div class="form-group col-auto mb-0">
                     <label class="small mb-0">altered</label>
                     <select id="altered" name="altered" class="form-control form-control-sm">
                         <option th:value="${pet.altered}"  th:text="${{pet.altered}}"></option>
@@ -129,13 +128,6 @@
                         <option th:value="'false'" th:text="false" th:if="${{pet.altered}}=='true'"></option>
                     </select>
                   </div>
-
-                  <div class="form-group col-2 m-0">
-                      <label class="small mb-0 p-0"></label>
-                      <div class="small">
-                        <a href="#" onclick="poppy(event);" data-th-value="${pet.id}">edit</a>
-                      </div>
-                </div>
 
               </fieldset>
             </form>
@@ -151,23 +143,24 @@
               </div>
           </div>
 
-           <small class="pl-1 text-muted">
-              pet id: <a data-th-href="@{/pets/{pid}?clientId={cid}(pid=${pet.id}, cid=${command.id})}" data-th-text="${pet.id}" >...</a>
-           </small>
+          <div class="d-flex justify-content-between">
+              <div class="small text-muted">
+                  pet id: <a data-th-href="@{/pets/{pid}?clientId={cid}(pid=${pet.id}, cid=${command.id})}" data-th-text="${pet.id}" >...</a>
+              </div>
+
+               <div class="small">
+                  <a href="#" onclick="poppy(event);" data-th-value="${pet.id}">edit</a>
+                </div>
+
+          </div>
+           
+
         </div>
 
       </div><!-- end pets -->
 
-      <!-- <select id="selectedPet" name="selectedPet" class="form-control form-control-sm" onload="selectedPet()">
-          <option th:each="row,rowStat : ${pets}" 
-            th:value="${row.id}"
-            th:text="${row.name}">pet_name</option>
-          </select> -->
-
-          
-      <!-- show appointments -->
    
-      <div class="col-12 col-md-6 mb-3" id="appointments" data-th-if="${appointments.size() > 0}">
+      <div class="col-12 col-md-8 mb-3" id="appointments" data-th-if="${appointments.size() > 0}">
         <h5><span data-th-text="${appointments.size()}">...</span> appointments(s):</h5>
 
         <div class="card mb-3 p-2 border-0" data-th-each="appt, rowStat : ${appointments}">
@@ -188,32 +181,32 @@
                     <input name="apptId" type="hidden" data-th-value="${appt.id}">
                     <input name="clientId" type="hidden" data-th-value="${command.id}">
 
-                    <div class="form-group col-8 col-md-4 mb-0">
+                    <div class="form-group col-4 col-md-3 mb-0">
                         <label class="small mb-0">date</label>
                         <input type="text" name="ApptDate" data-th-value="${appt.ApptDate}" class="form-control form-control-sm">
                     </div>
 
-                    <div class="form-group col-4 col-md-4 mb-0">
+                    <div class="form-group col-3 col-md-2 mb-0">
                         <label class="small mb-0">time</label>
                         <input type="text" name="ApptTime" data-th-value="${appt.ApptTime}" class="form-control form-control-sm">
                     </div>
 
-                    <div class="form-group col-6 col-md-4 mb-0">
+                    <div class="form-group col-3 col-md-2 mb-0">
                         <label class="small mb-0">type</label>
                         <input type="text" name="visitType" data-th-value="${appt.visitType}" class="form-control form-control-sm">
                     </div>
                         
 
-                    <div class="form-group col mb-0">
+                    <div class="form-group col-3 col-md-3 mb-0">
                         <label class="small mb-0">reason</label>
                         <input type="text" name="reason" data-th-value="${appt.ApptReason}" class="form-control form-control-sm">
                     </div>
 
-                    <div class="form-group col-3 mb-0">
-                        <label class="small mb-0">close</label>
+                    <div class="form-group col mb-0">
+                        <label class="small mb-0 invisible">close</label>
                         <input type="text" name="closeType" data-th-value="${appt.closeType}" class="form-control form-control-sm">
                     </div>
-
+  
                   </div>
   
                 </fieldset>
@@ -232,7 +225,7 @@
     <div class="m-0 p-0 small" th:text="${command.id}"></div>
     <div class="m-0 p-0 small" th:if="${{command.id}}<${#numbers.formatInteger('50',3)}"><a data-th-href="@{/clients/{id}(id=${command?.id}+1)}">next</a></div>
   </div>
-  <hr class="m-0">
+  <hr class="m-0 sr-only">
   </div>
 
 
