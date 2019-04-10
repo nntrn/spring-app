@@ -1,14 +1,13 @@
-:root{
-  --background: #f2f3f5;
-}
+:root {
+  --background: #f2f3f5; }
+
 .message-box-info {
-  color: green;
+  color: var(--green);
   padding: 1rem 0;
   padding-top: 0;
 }
 
-.was-validated .form-control:invalid,
-.was-validated .form-control:valid {
+.was-validated .form-control:invalid, .was-validated .form-control:valid {
   background-image: unset;
   border-color: rgba(0, 0, 0, .125);
 }
@@ -17,8 +16,7 @@
   border-color: rgba(0, 0, 0, .125)
 }
 
-.form-control.is-invalid,
-.was-validated .form-control:invalid {
+.form-control.is-invalid, .was-validated .form-control:invalid {
   padding-right: 0;
   background-image: unset;
 }
@@ -31,11 +29,10 @@
 .was-validated label[for="name"]:after {
   display: inline;
   content: "*";
-  color: red;
+  color: var(--red);
 }
 
-.form-control.is-valid,
-.was-validated .form-control:valid {
+.form-control.is-valid, .was-validated .form-control:valid {
   padding-right: 0;
 }
 
@@ -47,12 +44,12 @@
 }
 
 body {
+  background-color: var(--background);
   color: #3f3f44;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
 
-.table,
-table {
+.table, table {
   font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   margin: 0;
   font-size: 14px;
@@ -60,15 +57,12 @@ table {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.table-sm td,
-.table-sm th {
+.table-sm td, .table-sm th {
   padding: .1rem .3rem;
   color: #3f3f44;
 }
 
 #wrapper #content-wrapper {
-  /*   background-color: rgba(0,0,0,.055);
-    background-color: rgba(255,255,255,.75); */
   overflow: hidden;
   height: 100vh;
 }
@@ -79,9 +73,9 @@ table {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--background);
 }
-.bg-background{
+
+.bg-background {
   background-color: var(--background);
 }
 
@@ -121,8 +115,9 @@ table {
   padding: 0;
 }
 
-#sidebarToggle {
-  background-color: rgba(255, 255, 255, .05)
+.sidebar #sidebarToggle {
+  background-color: rgba(255, 255, 255, .05);
+  color: black;
 }
 
 #sidebarToggleTop:focus {
@@ -134,22 +129,6 @@ table {
   padding: .1rem .4rem;
   font-size: .8em;
   opacity: 1.8
-}
-
-.btn-primary.custom-buttons {
-  color: #fff;
-  background: #2196f3;
-  border: 1px solid #2196f3;
-}
-
-.btn-outline-secondary.custom-buttons {
-  color: #2196f3;
-  border-color: #2196f3;
-  background: #fff;
-}
-
-.btn-link {
-  color: #2196f3;
 }
 
 .btn.custom-buttons:hover {
@@ -170,16 +149,6 @@ form.custom-labels:hover label {
   display: block;
 }
 
-.bg-gradient-primary {
-  background-color: #2196f3;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #2196f3;
-  border-color: #2196f3;
-}
-
 .form-control {
   padding: 0 .5rem
 }
@@ -189,7 +158,7 @@ form.custom-labels:hover label {
 }
 
 .topbar .dropdown .dropdown-menu {
-  right: .75rem
+  right: .75rem;
 }
 
 .custom.card-body {
@@ -200,8 +169,7 @@ form.custom-labels:hover label {
   line-height: 90%;
 }
 
-.dropdown-item:focus,
-.dropdown-item:hover {
+.dropdown-item:focus, .dropdown-item:hover {
   color: #16181b;
   text-decoration: none;
   background-color: #f8f9fa
@@ -215,7 +183,6 @@ footer {
   color: #ddd;
 }
 
-/* sidebar   ******************************************/
 .site-brand-icon {
   padding: .1rem;
   border-radius: 50%
@@ -223,8 +190,9 @@ footer {
 
 .site-brand-text {
   display: flex;
-  color: #2196f3;
-  font-weight: bold;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.35em;
   margin: 0 .4rem;
   text-align: center;
   align-items: center;
@@ -232,14 +200,14 @@ footer {
   text-transform: uppercase;
 }
 
-
-.site-brand:hover {
+*:hover {
   text-decoration: none !important;
 }
 
 .site-brand {
   display: flex;
   flex-direction: row;
+  margin-left: .15rem
 }
 
 .sidebar a {
@@ -247,12 +215,13 @@ footer {
 }
 
 .sidebar #sidebarToggle::after {
-  color: #2196f3 !important;
+  color: var(--blue) ;
 }
 
 .sidebar {
   background: #f7f8fb;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #e6e6e6;
+  padding-right: .75rem;
   background: transparent;
 }
 
@@ -268,8 +237,7 @@ footer {
   color: rgba(0, 0, 0, .55)
 }
 
-.sidebar .nav-item .collapse .collapse-inner,
-.sidebar .nav-item .collapsing .collapse-inner {
+.sidebar .nav-item .collapse .collapse-inner, .sidebar .nav-item .collapsing .collapse-inner {
   min-width: unset;
   max-width: 10rem;
 }
@@ -348,6 +316,21 @@ footer {
     height: 100vh;
     overflow: hidden;
   }
+
+  .flex-table tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: .5rem 0;
+    align-content: stretch
+  }
+
+  .flex-table td {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-evenly
+  }
 }
 
 .sidebar-dark hr.sidebar-divider {
@@ -367,11 +350,11 @@ footer {
 }
 
 .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {
-  color: #2196f3
+  color: var(--blue);
 }
 
 .sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i {
-  color: #acb4bc;
+  color: #444;
 }
 
 .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
@@ -408,7 +391,11 @@ footer {
 }
 
 .sidebar-toggled #main-content {
-  padding: .5rem;
+  overflow: scroll;
+}
+
+.sidebar-toggled .sidebar {
+  display: none;
 }
 
 .popover-header {
@@ -442,6 +429,23 @@ p.confirmation-content {
   border-radius: 0;
 }
 
-.hide{
-  display:none
+.hide {
+  display: none
+}
+
+.sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,.sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover {
+  background-color: var(--background)
+}
+
+.sidebar .nav-item .collapse .collapse-inner .collapse-item:active,.sidebar .nav-item .collapsing .collapse-inner .collapse-item:active {
+  background-color: var(--background)
+}
+
+.flex-0 {
+  flex: 0;
+}
+
+.toggle-expand, .toggle-expand a {
+  position: absolute;
+  bottom: 0;
 }

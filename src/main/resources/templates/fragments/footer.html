@@ -1,6 +1,11 @@
 <footer data-th-fragment="footer" class="pt-3">
+    <div class="text-left toggle-expand">
+        <button id2="sidebarToggleTop" id="sidebarToggle" class="btn btn-link rounded-circle p-0">
+            <i class="fas fa-expand-arrows-alt text-black-50"></i>
+        </button>
+    </div>
     <div class="text-center footer">
-        <span class="text-uppercase small">
+        <span class="text-uppercase small text-muted">
             &copy; <span th:text="${#dates.year(#dates.createToday())}"></span> <span th:include="fragments/attributes.html :: siteTitle">...</span>
         </span>
     </div>
