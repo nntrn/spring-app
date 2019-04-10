@@ -1,20 +1,14 @@
         <!-- Topbar -->
         <nav data-th-fragment="topbar" class="navbar navbar-expand navbar-light topbar">
         
-          <!-- Sidebar - Brand -->
+          <!-- site brand -->
           <a class="site-brand d-flex" href="#" data-th-href="@{'/'}">
             <div class="site-brand-icon">
-              <!-- <i class="fa fa-paw"></i> -->
               <img src="/images/icon.svg" alt="Pet Clinic">
             </div>
+            <!-- title -->
             <div class="site-brand-text" th:include="fragments/attributes.html :: siteTitle">...</div>
-            <!-- <div class="site-brand-text">Pet App</div> -->
           </a>
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle">
-            <i class="fa fa-bars fa-lg"></i>
-          </button>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -23,14 +17,14 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="fa-stack">
-                    <i class="fas fa-circle fa-stack-2x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x sr-only"></i>
                     <i class="fas fa-search fa-fw fa-stack-1x"></i>
                 </span>
               </a>
               
               <!-- Dropdown - Search -->
               <div class="dropdown-menu dropdown-menu-right p-1 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-group mr-auto">
+                <form class="form-group mr-auto mb-0">
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 js-input-table-search" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
@@ -42,7 +36,6 @@
                 </form>
               </div>
             </li>
-
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -68,9 +61,7 @@
                   Sign in
                 </a>
             </div>
-
             </li>
-
           </ul>
 
         </nav>
